@@ -9,6 +9,10 @@ const __dirname = path.dirname(__filename); // get the name of the directory
 const nextConfig = {
   sassOptions: {
     includePaths: [path.join(__dirname, 'src', 'styles')],
+    additionalData: `
+    @use 'constants/index' as *;
+    @use 'mixins/index' as *;
+  `,
   },
 };
 

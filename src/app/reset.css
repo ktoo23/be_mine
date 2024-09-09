@@ -1,7 +1,7 @@
 * {
   box-sizing: border-box;
   margin: 0;
-  font-family: $font-main;
+  font-family: 'Noto Sans KR';
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
 }

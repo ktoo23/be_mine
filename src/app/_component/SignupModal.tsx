@@ -7,6 +7,7 @@ import Link from 'next/link';
 
 import styles from './login.module.scss';
 import { IoCloseCircleOutline } from 'react-icons/io5';
+import { SubTitle } from './SubTitle';
 
 export const SignupModal = () => {
   const router = useRouter();
@@ -31,8 +32,8 @@ export const SignupModal = () => {
   return (
     <div className={cn(`${styles['modal-background']}`)}>
       <div className={styles['modal-card']}>
-        <header className={styles['modal-card-header']}>
-          <h1 className={styles.title}>회원가입</h1>
+        <SubTitle title="회원가입" />
+        <div className={styles['modal-card-header']}>
           <button
             type="button"
             className={cn(`${styles['button-close']}`, 'lg-only')}
@@ -40,7 +41,7 @@ export const SignupModal = () => {
           >
             <IoCloseCircleOutline />
           </button>
-        </header>
+        </div>
         <div className={styles['modal-card-content']}>
           <form>
             <label htmlFor="id" className={styles.label}>

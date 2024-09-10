@@ -11,6 +11,7 @@ import styles from './login.module.scss';
 import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { SubTitle } from './SubTitle';
 
 export const LoginModal = () => {
   const router = useRouter();
@@ -35,8 +36,8 @@ export const LoginModal = () => {
   return (
     <div className={cn(`${styles['modal-background']}`)}>
       <div className={styles['modal-card']}>
-        <header className={styles['modal-card-header']}>
-          <h1 className={styles.title}>로그인</h1>
+        <SubTitle title="로그인" />
+        <div className={styles['modal-card-header']}>
           <button
             type="button"
             className={cn(`${styles['button-close']}`, 'lg-only')}
@@ -44,7 +45,7 @@ export const LoginModal = () => {
           >
             <IoCloseCircleOutline />
           </button>
-        </header>
+        </div>
         <div className={styles['modal-card-content']}>
           <form>
             <label htmlFor="email" className="visually-hidden">

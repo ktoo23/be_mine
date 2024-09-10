@@ -10,6 +10,7 @@ import { IoCloseCircleOutline } from 'react-icons/io5';
 import styles from './login.module.scss';
 import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 
 export const LoginModal = () => {
   const router = useRouter();
@@ -68,6 +69,10 @@ export const LoginModal = () => {
             />
             <button className={styles['login-button']}>로그인</button>
           </form>
+          <div className={styles['link-wrapper']}>
+            <Link href="/auth/signup">계정이 없어요!</Link>
+            <Link href="/">비밀번호 분실했어요</Link>
+          </div>
         </div>
         <div className={styles['modal-card-footer']}>
           <p>간편하게 로그인 하기</p>

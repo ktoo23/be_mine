@@ -1,0 +1,18 @@
+.title {
+  padding-top: 20px;
+  padding-bottom: 20px;
+
+  h1 {
+    font-size: $font-size-18;
+  }
+
+  @include responsive(T) {
+    h1 {
+      font-size: $font-size-24;
+    }
+  }
+
+  @include responsive(D) {
+    padding-bottom: 0;
+  }
+}

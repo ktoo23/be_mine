@@ -13,6 +13,10 @@ html {
 body {
   font-family: 'Noto Sans KR';
   background-color: #fff;
+
+  &::-webkit-scrollbar {
+    display: none !important;
+  }
 }
 
 h1 {

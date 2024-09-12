@@ -3,12 +3,14 @@
     height: 100%;
     display: flex;
     justify-content: center;
-    position: absolute;
+    position: fixed;
     background-color: rgba(0, 0, 0, 0.4);
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
+    z-index: $modal-level;
+    overscroll-behavior: contain;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -19,10 +21,12 @@
 
 .modal-card {
   @include no-scrollbar;
+  overscroll-behavior: contain;
   width: 100vw;
   height: 100%;
   background-color: $white;
   overflow: auto;
+  overflow-behavior: contain;
   padding: 60px 20px;
 
   $input-height-sm: 50px;
@@ -43,11 +47,11 @@
 
     .button-close {
       position: absolute;
-      top: -20px;
-      right: 0;
+      top: -60px;
+      right: -10px;  
       color: $lavender;
       font-weight: bold;
-      font-size: $font-size-24;
+      font-size: $font-size-40;
 
       &:hover,
       &:active {
@@ -213,6 +217,7 @@
   @include responsive(D) {
     position: relative;
     @include pos-center-y;
+    padding-top: 40px;
     width: 600px;
     height: 500px;
     background-color: $white;

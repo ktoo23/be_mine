@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 import cn from 'classnames';
-import styles from './LocalNavbar.module.scss';
+import styles from './localNavbar.module.scss';
 import { LuDog, LuUser } from 'react-icons/lu';
 import { LuPencil } from 'react-icons/lu';
 import { MdOutlineQuiz } from 'react-icons/md';
@@ -26,7 +26,7 @@ export const LocalNavbar = () => {
           <Link href="/" className={styles['title']}></Link>
         </li>
         <li className={styles['lnb-item']}>
-          <Link href="/">
+          <Link href="/test">
             <MdOutlineQuiz className={styles.icon} />
             임보 유형
           </Link>

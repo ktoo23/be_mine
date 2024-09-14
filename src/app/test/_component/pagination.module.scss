@@ -1,0 +1,68 @@
+.pagination-wrapper {
+  @include flexbox;
+
+  span {
+    margin: 0 10px;
+    font-weight: 600;
+
+    &.disabled {
+      color: $secondary;
+    }
+  }
+
+  .pagination-progressbar {
+    position: relative;
+    margin: 0 10px;
+    width: 140px;
+    height: 2px;
+    overflow: hidden;
+    background-color: $border;
+    border-radius: 7px / 2;
+
+    &-fill {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      background: $primary-color;
+      border-radius: 7px / 2;
+      width: 0; /* 초기값 설정 */
+      transition: width 500ms ease-in-out; /* width 애니메이션 효과 */
+    }
+  }
+
+  .arrow-icon {
+    font-size: $font-size-34;
+  }
+
+  @include responsive(T) {
+    span {
+      margin: 0 20px;
+    }
+
+    .pagination-progressbar {
+      margin: 0 20px;
+      width: 200px;
+    }
+  }
+
+  @include responsive(D) {
+    span {
+      margin: 0 20px;
+    }
+
+    .pagination-progressbar {
+      margin: 0 20px;
+      width: 200px;
+    }
+
+    button {
+      width: 60px;
+      height: 60px;
+
+      .arrow-icon {
+        font-size: 60px;
+      }
+    }
+  }
+}

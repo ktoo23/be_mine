@@ -1,7 +1,7 @@
 import { SubTitle } from '../_component/SubTitle';
 import { Question } from './_component/Question';
 
-import styles from './test.module.scss';
+import styles from './page.module.scss';
 
 const Page = () => {
   return (

@@ -1,0 +1,9 @@
+.question-header {
+    @include column-flexbox;
+
+    p {
+      margin-bottom: 10px;
+      color: $lavender;
+      font-weight: bold;
+    }
+}

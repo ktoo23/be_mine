@@ -2,11 +2,12 @@
 
 import { useState } from 'react';
 
-import styles from '../test.module.scss';
+import styles from './question.module.scss';
 import QUESTIONS from '@/data';
 import { Header } from './Header';
 import { Pagination } from './Pagination';
 import { Answers } from './Answers';
+import { Summary } from './Summary';
 
 export const Question = () => {
   const [userAnswers, setUserAnsweres] = useState<string[]>([]);
@@ -21,6 +22,7 @@ export const Question = () => {
     selectedAnswer: string,
   ) => {
     e.preventDefault();
+
     if (userAnswers.length === activeQuestionIndex) {
       setUserAnsweres((prevState) => {
         return [...prevState, selectedAnswer];
@@ -51,7 +53,7 @@ export const Question = () => {
   };
 
   if (quizIsComplete) {
-    return <div>{userAnswers}</div>;
+    return <Summary userAnswers={userAnswers} />;
   }
 
   return (
@@ -67,7 +69,6 @@ export const Question = () => {
         onSelect={handleSelectAnswer}
       />
       <Pagination
-        key={activeQuestionIndex}
         currentPage={activeQuestionIndex}
         totalPages={QUESTIONS.length}
         onNext={handleNext}

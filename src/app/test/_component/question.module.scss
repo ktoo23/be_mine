@@ -1,0 +1,18 @@
+$padding-sm: 50px;
+$padding-md: 100px;
+
+.question {
+  padding: $padding-sm 20px;
+  background-color: $white;
+
+  @include responsive(T) {
+    padding: $padding-md 40px;
+  }
+
+  @include responsive(D) {
+    margin: 0 auto;
+    padding: $padding-md 60px;
+    max-width: 1300px;
+    border-radius: 10px;
+  }
+}

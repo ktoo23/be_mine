@@ -1,9 +1,9 @@
 'use client';
 
-import { MutableRefObject, useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import cn from 'classnames';
 
-import styles from '../test.module.scss';
+import styles from './answers.module.scss';
 
 interface AnswersProps {
   answers: string[];

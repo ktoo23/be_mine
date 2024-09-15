@@ -1,7 +1,6 @@
 'use client';
 
 import cn from 'classnames';
-import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
 import Image from 'next/image';
@@ -77,8 +76,6 @@ const calculateScore = (answers: string[], userAnswers: string[]) => {
 };
 
 export const Summary = ({ userAnswers }: SummaryProps) => {
-  const router = useRouter();
-
   let answers: string[] = generateAnswers();
   console.log('answers: ', answers, 'userAnswers', userAnswers);
 

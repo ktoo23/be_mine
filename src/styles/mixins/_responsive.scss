@@ -1,6 +1,6 @@
 @mixin responsive($screen) {
   @if $screen == 'T' {
-    @media screen and (min-width: 720px + 1px) and (max-width: 1420px) {
+    @media screen and (min-width: 720px) {
       @content;
     }
   }

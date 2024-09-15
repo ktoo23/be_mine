@@ -1,21 +1,34 @@
-.title {
-
-  h1 {
-    font-size: $font-size-18;
-  }
+.title-wrapper {
+  padding: 100px 20px 20px;
+  border: 1px solid $border;
 
   @include responsive(T) {
-    margin-bottom: 30px;
-
-    h1 {
-      font-size: $font-size-24;
-    }
+    padding: 200px 40px 30px;
+  }
+  
+  @include responsive(D) {
+    margin: 0;
+    padding-bottom: 60px;
   }
 
-  @include responsive(D) {
+  .title {
     h1 {
       color: $primary-color;
-      font-size: $font-size-24;
+      font-size: $font-size-18;
+    }
+  
+    @include responsive(T) {
+      h1 {
+        font-size: $font-size-24;
+      }
+    }
+  
+    @include responsive(D) {
+      margin: 0 auto;
+      width: 1400px;
+      h1 {
+        font-size: $font-size-40;
+      }
     }
   }
 }

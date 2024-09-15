@@ -1,0 +1,54 @@
+.nav-container {
+  .nav-list {
+    @include flexbox(start);
+    margin-top: 25px;
+  }
+
+  .nav-item {
+    @include inline-flexbox;
+    flex-direction: column;
+    margin-right: 15px;
+    padding: 10px 0;
+    font-size: $font-size-14;
+    font-weight: 600;
+    color: $secondary;
+    cursor: pointer;
+
+    .icon {
+      margin-top: 5px;
+      width: 20px;
+      height: 20px;
+      opacity: 0;
+    }
+
+    &:hover,
+    &:active {
+      color: $tertiary;
+    }
+
+    &.is-active {
+      color: $lavender;
+
+      .icon {
+        opacity: 1;
+      }
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  @include responsive(T) {
+    .nav-item {
+      font-size: $font-size-18;
+    }
+  }
+
+  @include responsive(D) {
+    .nav-item {
+      margin-right: 25px;
+      font-size: $font-size-24;
+    }
+  }
+}

@@ -6,6 +6,7 @@
   width: 100%;
   height: 70px;
   background-color: $white;
+  z-index: $lnb-level;
 
   &-list {
     @include flexbox(between);

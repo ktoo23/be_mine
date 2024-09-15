@@ -37,7 +37,7 @@ export const GlobalNavbar = () => {
             <h2 className="visually-hidden">메뉴</h2>
             <ul className={styles['gnb-nav-list']}>
               <li className={styles['gnb-nav-item']}>
-                <Link href="/">임보동물 찾기</Link>
+                <Link href="/foster">임보동물 찾기</Link>
               </li>
               <li className={styles['gnb-nav-item']}>
                 <Link href="/">임보 일기</Link>

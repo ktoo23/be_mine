@@ -11,7 +11,7 @@ export const LocalNavbar = () => {
     <nav className={cn(`${styles.lnb}`, 'lg-hidden')}>
       <ul className={styles['lnb-list']}>
         <li className={styles['lnb-item']}>
-          <Link href="/">
+          <Link href="/foster">
             <LuDog className={styles.icon} />
             임보 동물
           </Link>

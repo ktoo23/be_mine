@@ -1,0 +1,135 @@
+.animal-info {
+  line-height: 150%;
+
+  &-misc {
+    @include flexbox(start);
+    margin-bottom: 5px;
+    font-size: $font-size-12;
+
+    .number {
+      margin-right: 5px;
+      color: $primary-color;
+    }
+
+    .date {
+      color: $tertiary;
+    }
+  }
+
+  &-title {
+    margin-bottom: 15px;
+    font-size: $font-size-14;
+  }
+
+  &-detail {
+    padding: 20px 0px;
+    font-size: $font-size-12;
+    border-top: 1px solid $dark;
+
+    .info-item {
+      @include flexbox(start);
+
+      &:last-child {
+        dt,
+        dd {
+          padding-bottom: 0;
+        }
+      }
+      
+      dt {
+        padding-bottom: 10px;
+        width: 100px;
+        font-weight: 500;
+      }
+
+      dd {
+        padding-bottom: 10px;
+        padding-left: 10px;
+      }
+    }
+  }
+
+  @include responsive(T) {
+
+    &-misc {
+      margin-bottom: 10px;
+      font-size: $font-size-14;
+
+      .number {
+        margin-right: 10px;
+      }
+    }
+
+    &-title {
+      margin-bottom: 30px;
+      font-size: $font-size-18;
+    }
+
+    &-detail {
+      padding: 40px 0px;
+      font-size: $font-size-16;
+  
+      .info-item {
+        dt {
+          padding-bottom: 15px;
+        }
+  
+        dd {
+          padding-bottom: 15px;
+          padding-left: 20px;
+        }
+      }
+    }
+  }
+
+  @include responsive(D) {
+    float: right;
+    position: sticky;
+    top: 120px;
+    right: 0;
+    width: 614px;
+    max-height: 745px;
+    overflow-y: auto;
+
+    &-misc {
+      font-size: $font-size-18;
+    }
+
+    &-title {
+      font-size: $font-size-30;
+    }
+
+    &-detail {
+      font-size: $font-size-20;
+    }
+  }
+}
+
+.tag-list {
+  margin-bottom: 20px;
+
+  @include responsive(T) {
+    margin-bottom: 40px;
+  }
+}
+
+.tag-item {
+  display: inline-block;
+  margin-right: 3px;
+  padding: 5px 10px;
+  color: $primary-color;
+  font-size: $font-size-12;
+  background-color: $background;
+  border: 1px solid $border;
+  border-radius: 40px;
+
+  @include responsive(T) {
+    padding: 7px 15px;
+    font-size: $font-size-14;
+  }
+
+  @include responsive(D) {
+    padding: 10px 20px;
+    font-size: $font-size-18;
+  }
+}

@@ -1,0 +1,53 @@
+.table-wrapper {
+  color: $primary-color;
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    table-layout: fixed;
+    font-size: $font-size-12;
+  }
+
+  tr {
+    &:last-child {
+      th,
+      td {
+        padding-bottom: 0;
+      }
+    }
+  }
+
+  th {
+    padding-bottom: 10px;
+    width: 60px;
+    text-align: left;
+  }
+
+  td {
+    padding-bottom: 10px;
+    padding-left: 10px;
+  }
+
+  @include responsive(T) {
+    table {
+      font-size: $font-size-14;
+    }
+
+    th {
+      padding-bottom: 15px;
+      width: 100px;
+    }
+
+    td {
+      padding-bottom: 15px;
+      padding-left: 20px;
+    }
+  }
+
+  @include responsive(D) {
+    table {
+      font-size: $font-size-20;
+    }
+  }
+}

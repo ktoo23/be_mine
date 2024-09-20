@@ -1,0 +1,30 @@
+.title {
+  display: block;
+  margin-bottom: 10px;
+  font-size: $font-size-12;
+  color: $primary-color;
+
+    @include responsive(T) {
+      margin-bottom: 20px;
+      font-size: $font-size-16;
+    }
+
+    @include responsive(D) {
+      font-size: $font-size-22;
+    }
+  }
+
+  .description {
+    margin-bottom: 20px;
+    font-size: $font-size-14;
+    line-height: 150%;
+    color: $primary-color;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    @include responsive(D) {
+      font-size: $font-size-16;
+    }
+  }

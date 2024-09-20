@@ -1,0 +1,21 @@
+.wrapper {
+  padding: 0 20px;
+  padding-top: 100px;
+  width: 100%;
+
+  @include responsive(T) {
+    padding: 0 40px;
+    padding-top: 200px;
+  }
+
+  @include responsive(D) {
+      padding: 0;
+      padding-top: 200px;
+      margin: 0 auto;
+      width: 1300px;
+
+    .section-wrapper {
+      width: 555px;
+    }
+  }
+}

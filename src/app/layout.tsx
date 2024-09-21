@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import localFont from 'next/font/local';
 
 import './normalize.css';
 import './reset.css';
@@ -7,7 +7,12 @@ import '../styles/globals.scss';
 import { GlobalNavbar } from './_component/GlobalNavbar';
 import { LocalNavbar } from './_component/LocalNavbar';
 
-const inter = Inter({ subsets: ['latin'] });
+const pretendard = localFont({
+  src: '../../public/fonts/PretendardVariable.woff2',
+  display: 'swap',
+  weight: '45 920',
+  variable: '--font-pretendard',
+});
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -22,8 +27,8 @@ export default function RootLayout({
   modal: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
+    <html lang="kr" className={`${pretendard.variable}`}>
+      <body className={pretendard.className}>
         <GlobalNavbar />
         <LocalNavbar />
         {children}

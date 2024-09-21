@@ -114,11 +114,10 @@
 }
 
 .tag-item {
+  @include text-style(null, $font-size-12, $primary-color);
   display: inline-block;
   margin-right: 3px;
   padding: 5px 10px;
-  color: $primary-color;
-  font-size: $font-size-12;
   background-color: $background;
   border: 1px solid $border;
   border-radius: 40px;

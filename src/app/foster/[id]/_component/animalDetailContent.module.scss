@@ -1,8 +1,7 @@
 .title {
+  @include text-style(null, $font-size-12, $primary-color);
   display: block;
   margin-bottom: 10px;
-  font-size: $font-size-12;
-  color: $primary-color;
 
     @include responsive(T) {
       margin-bottom: 20px;
@@ -15,10 +14,9 @@
   }
 
   .description {
+    @include text-style(null, $font-size-14, $primary-color);
     margin-bottom: 20px;
-    font-size: $font-size-14;
     line-height: 150%;
-    color: $primary-color;
 
     &:last-child {
       margin-bottom: 0;

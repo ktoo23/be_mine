@@ -6,12 +6,11 @@
 
   .nav-item {
     @include inline-flexbox;
+    @include text-style(null, $font-size-14, $secondary);
     flex-direction: column;
     margin-right: 15px;
     padding: 10px 0;
-    font-size: $font-size-14;
     font-weight: 600;
-    color: $secondary;
     cursor: pointer;
 
     .icon {

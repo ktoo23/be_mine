@@ -65,8 +65,7 @@
 
     .link-wrapper {
       @include flexbox(between);
-      font-size: $font-size-12;
-      color: $primary-color
+      @include text-style(null, $font-size-12, $primary-color);
     }
 
     form {
@@ -110,12 +109,11 @@
 
     .login-button {
       @include inline-flexbox;
+      @include text-style(null, $font-size-14, $white);
       width: 100%;
       height: $input-height-sm;
-      font-size: $font-size-14;
       font-weight: bold;
       background-color: $lavender;
-      color: $white;
       border-radius: 5px;
       transition: background-color 200ms ease-in-out;
 

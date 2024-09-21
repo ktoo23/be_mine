@@ -1,0 +1,7 @@
+@mixin text-style($type: null, $size, $color: '#191a20') {
+  @if $type != null {
+    font-family: $type;
+  }
+  font-size: $size;
+  color: $color;
+}

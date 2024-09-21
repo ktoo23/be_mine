@@ -1,9 +1,11 @@
 .wrapper {
+  margin-bottom: 100px;
   padding: 0 20px;
   padding-top: 100px;
   width: 100%;
 
   @include responsive(T) {
+    margin-bottom: 200px;
     padding: 0 40px;
     padding-top: 200px;
   }

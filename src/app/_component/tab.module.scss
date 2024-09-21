@@ -45,6 +45,9 @@
   }
 
   @include responsive(D) {
+    max-width: 1400px;
+    margin: 0 auto;
+    
     .nav-item {
       margin-right: 25px;
       font-size: $font-size-24;

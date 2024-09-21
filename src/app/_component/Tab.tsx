@@ -1,18 +1,23 @@
 import { IoPawSharp } from 'react-icons/io5';
 import cn from 'classnames';
 
-import styles from './fosterNavbar.module.scss';
+import styles from '@/app/_component/tab.module.scss';
 
-export const FosterNavbar = () => {
+interface TabProps {
+  tab1: string;
+  tab2: string;
+}
+
+export const Tab = ({ tab1, tab2 }: TabProps) => {
   return (
     <div className={styles['nav-container']}>
       <ul className={styles['nav-list']}>
         <li className={styles['nav-item']}>
-          내 주인이 되!
+          {tab1}
           <IoPawSharp className={styles.icon} />
         </li>
         <li className={cn(styles['nav-item'], styles['is-active'])}>
-          내 집사가 되.
+          {tab2}
           <IoPawSharp className={styles.icon} />
         </li>
       </ul>

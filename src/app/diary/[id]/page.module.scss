@@ -1,0 +1,26 @@
+
+@font-face {
+  font-family: 'SangSangShinb7';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_three@1.1/SangSangShinb7.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.diary-container {
+  position: relative;
+  padding-bottom: 10px;
+  border: 1px solid $dark;
+  border-radius: 10px;
+  overflow: hidden;
+
+  @include responsive(T) {
+    margin: 0 auto;
+    width: 617px;
+  }
+
+  @include responsive(D) {
+    padding-bottom: 0;
+    width: 1200px;
+    border-radius: 20px;
+  }
+}

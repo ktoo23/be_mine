@@ -1,0 +1,19 @@
+$padding-sm: 50px;
+$padding-md: 100px;
+
+.container {
+
+  padding: $padding-sm 20px 0;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+
+  @include responsive(T) {
+    padding: $padding-md 40px 0;
+  }
+
+  @include responsive(D) {
+    margin: 0 auto;
+    width: 1400px;
+  }
+}

@@ -1,0 +1,118 @@
+.animal {
+  &-list {
+    display: grid;
+    width: 100%; /* 부모 컨테이너에 맞도록 너비 설정 */
+    grid-gap: 16px; /* 카드 간의 간격 */
+    /* 기본 1열로 설정 (모바일) */
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  &-item {
+    margin-bottom: 30px;
+  }
+
+  &-content {
+    display: block;
+    position: relative; /* 텍스트 오버레이를 이미지 위에 배치하기 위해 relative 사용 */
+    overflow: hidden;
+    color: $white;
+    border-radius: 10px;
+
+    .overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      padding: 10px;
+      width: 100%;
+      /* background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent); /* 하단에서 위로 가는 검은색 그라데이션 */
+      background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.375776) 57.03%, #000000 100%);
+      color: white; /* 텍스트 색상 */
+      box-sizing: border-box;
+      border-radius: 10px;
+    }
+  }
+
+  
+  &-image {
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border-top-right-radius: 10px;
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+      object-fit: contain;
+    }
+  }
+  
+  &-info {
+    margin-bottom: 5px;
+    font-size: $font-size-16;
+  }
+  
+  &-number {
+    @include text-style(null, $font-size-12, $white);
+    margin-bottom: 5px;
+  }
+
+  @include responsive(T) {
+    &-list {
+      grid-template-columns: repeat(2, 1fr); /* 2개의 열 */
+    }
+
+    &-info {
+      margin-bottom: 10px;
+    }
+
+    &-number {
+      margin-bottom: 10px;
+      font-size: $font-size-14;
+    }
+  }
+
+  @include responsive(D) {
+    &-list {
+      grid-template-columns: repeat(4, 1fr); /* 4개의 열 */
+    }
+
+    &-image {
+      transition: transform 300ms ease-in-out;
+    }
+
+    &-content {
+
+      &:hover,
+      &:focus,
+      &:active {
+        .animal-image {
+          transform: scale(1.2);
+          -webkit-transform: scale(1.2); /* 크롬, 사파리 */
+          -moz-transform: scale(1.2);  /* 파이어폭스 */
+          -ms-transform: scale(1.2); /* IE */
+          -o-transform: scale(1.2);  /* 오페라 */
+        }
+
+        .overlay {
+          opacity: 1;
+        }
+      }
+
+      .overlay {
+        transition: opacity 200ms ease-in-out;
+        opacity: 0;
+      }
+    }
+
+    &-item {
+      margin-bottom: 40px;
+    }
+
+    &-number {
+      font-size: $font-size-18;
+    }
+
+    &-info {
+      font-size: $font-size-22;
+    }
+  }
+}

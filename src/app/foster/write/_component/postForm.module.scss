@@ -1,0 +1,292 @@
+$padding-sm: 50px;
+$padding-md: 100px;
+
+$sm: 10px;
+$md: 20px;
+
+$sm-height: 50px;
+$md-height: 70px;
+$lg-height: 80px;
+
+.post {
+  position: relative;
+  padding: $padding-sm 20px;
+  background-color: $white;
+
+  .upload-image-wrapper {
+    margin-bottom: 20px;
+
+    .uploadButton {
+      padding: $sm;
+      margin-bottom: $sm;
+      border: 1px solid $dark;
+      border-radius: $sm;
+      font-weight: bold;
+      font-size: $font-size-14;
+    }
+
+    .misc {
+      @include text-style(null, $font-size-14, $secondary);
+    }
+
+    .image-box {
+      display: flex;
+      margin-top: $sm;
+    }
+
+    .preview-image {
+      flex: 1;
+
+      img {
+        display: block;
+        width: 100%;
+        object-fit: contain;
+        max-height: 400px;
+      }
+    }
+
+  }
+
+  .animal-info,
+  .animal-details,
+  .foster-conditions,
+  .health-info,
+  .reference-info {
+    margin-bottom: 40px;
+
+    div:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .inputDiv {
+    margin-bottom: $sm;
+
+    .title {
+      margin-bottom: $sm;
+      font-size: $font-size-14;
+      font-weight: bold;
+    }
+
+    select {
+      cursor: pointer;
+    }
+  }
+
+  .inputLabel {
+    display: block;
+    margin-bottom: $sm;
+    font-size: $font-size-14;
+    font-weight: bold;
+  }
+
+  input[type="radio"] {
+    cursor: pointer;
+  }
+
+  .input {
+    padding: $sm;
+    width: 100%;
+    height: $sm-height;
+    font-size: $font-size-12;
+    border: 1px solid $border;
+    border-radius: 5px;
+    transition: border 200ms ease-in-out;
+
+    &:hover,
+    &:focus,
+    &:active {
+      border: 2px solid $lavender;
+    }
+  }
+
+  .weight {
+    width: 50px;
+    margin-right: $sm;
+  }
+
+  strong {
+    display: block;
+    padding-bottom: $sm;
+    margin-bottom: $md;
+    border-bottom: 2px solid $dark;
+    font-size: $font-size-16;
+
+    .icon {
+      position: relative;
+      top: 2px;
+      color: $lavender;
+    }
+  }
+
+  .radioGroup {
+    position: relative;
+    display: block;
+    margin-bottom: $sm;
+    text-align: center;
+    
+    .level1Text,
+    .level2Text {
+      color: $primary-color;
+      font-weight: bold;
+    }
+
+    .level1Text {
+      display: block;
+      text-align: left;
+    }
+
+    .level2Text {
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+  }
+
+  .radioWrapper {
+    label {
+      margin-right: $sm;
+    }
+  }
+
+  .button-wrapper {
+    @include flexbox;
+    margin-top: 20px;
+  }
+
+  .actionButton {
+    @include text-style(null, $font-size-14, $white);
+    width: 180px;
+    height: $sm-height;
+    background-color: $lavender;
+    font-weight: bold;
+    border-radius: 41px;
+  }
+
+  @include responsive(T) {
+    padding: $padding-md 40px;
+
+    .upload-image-wrapper {
+      .uploadButton {
+        padding: $md;
+        margin-bottom: $md;
+        font-size: $font-size-24;
+      }
+
+      .misc {
+        @include text-style(null, $font-size-18, $secondary);
+        margin-bottom: $md;
+      }
+    }
+
+    .animal-info,
+    .animal-details,
+    .foster-conditions,
+    .health-info,
+    .reference-info {
+      margin-bottom: 80px;
+    }
+
+    .inputDiv {
+      margin-bottom: 40px;
+
+      textarea {
+        padding: 20px;
+      }
+    }
+
+    .inputLabel {
+      margin-bottom: $md;
+      font-size: $font-size-18;
+    }
+
+    .inputDiv {
+      .title {
+        margin-bottom: $md;
+        font-size: $font-size-18;
+      }
+    }
+
+    .input {
+      padding: 0 $md;
+      height: $md-height;
+      font-size: $font-size-16;
+    }
+
+    .weight {
+      width: 80px;
+    }
+
+    strong {
+      padding-bottom: $md;
+      margin-bottom: 40px;
+      font-size: $font-size-20;;
+    }
+
+    .radioGroup {
+      @include flexbox(start);
+      margin-bottom: $md;
+
+      .level2Text {
+        position: relative;
+      }
+      
+    }
+
+    .radioWrapper {
+      margin: 0 $md;
+    }
+
+    .button-wrapper {
+      margin-top: 40px;
+    }
+
+    .actionButton {
+      width: 250px;
+      height: $md-height;
+      font-size: $font-size-18;
+    }
+  }
+
+  @include responsive(D) {
+    margin: 0 auto;
+    padding: $padding-md 60px;
+    max-width: 1300px;
+
+    .upload-image-wrapper {
+      .uploadButton {
+        padding: $md;
+        font-size: $font-size-24;
+      }
+    }
+
+    .inputLabel {
+      font-size: $font-size-24;
+    }
+
+    .inputDiv {
+      .title {
+        font-size: $font-size-24;
+      }
+    }
+
+    .input {
+      height: $lg-height;
+      font-size: $font-size-20;
+    }
+
+    .weight {
+      width: 100px;
+    }
+
+    strong {
+      font-size: $font-size-30;
+    }
+
+    .actionButton {
+      width: 280px;
+      height: $lg-height;
+      font-size: $font-size-24;
+    }
+  }
+}

@@ -17,7 +17,7 @@ export const LocalNavbar = () => {
           </Link>
         </li>
         <li className={styles['lnb-item']}>
-          <Link href="/">
+          <Link href="/diary">
             <LuPencil className={styles.icon} />
             임보 일기
           </Link>

@@ -40,7 +40,7 @@ export const GlobalNavbar = () => {
                 <Link href="/foster">임보동물 찾기</Link>
               </li>
               <li className={styles['gnb-nav-item']}>
-                <Link href="/">임보 일기</Link>
+                <Link href="/diary">임보 일기</Link>
               </li>
               <li className={styles['gnb-nav-item']}>
                 <Link href="/test">임보 테스트</Link>

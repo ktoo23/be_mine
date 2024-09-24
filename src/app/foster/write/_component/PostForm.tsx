@@ -97,6 +97,20 @@ export const PostForm = () => {
         </div>
         <div className={styles['animal-info']}>
           <div className={styles.inputDiv}>
+            <p className={styles.title}>종</p>
+            <input
+              type="radio"
+              id="dog"
+              name="species"
+              value="강아지"
+              defaultChecked
+            />
+            <label htmlFor="dog">강아지</label>
+
+            <input type="radio" id="cat" name="species" value="고양이" />
+            <label htmlFor="cat">고양이</label>
+          </div>
+          <div className={styles.inputDiv}>
             <label className={styles.inputLabel} htmlFor="current-status">
               현 상황
             </label>

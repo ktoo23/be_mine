@@ -32,10 +32,16 @@ $lg-height: 80px;
 
     .uploadButton {
       padding: $sm;
+      margin-bottom: $sm;
       border: 1px solid $dark;
       border-radius: $sm;
       font-weight: bold;
       font-size: $font-size-14;
+    }
+
+    .misc {
+      @include text-style(null, $font-size-14, $secondary);
+      margin-bottom: $sm;
     }
 
     img {
@@ -111,9 +117,15 @@ $lg-height: 80px;
     .upload-image-wrapper {
       .uploadButton {
         padding: $md;
+        margin-bottom: $md;
         font-size: $font-size-24;
       }
   
+      .misc {
+        @include text-style(null, $font-size-18, $secondary);
+        margin-bottom: $md;
+      }
+      
       img {
         width: 617px;
         max-height: 900px;
@@ -148,7 +160,6 @@ $lg-height: 80px;
 
     .upload-image-wrapper {
       .uploadButton {
-        padding: $md;
         font-size: $font-size-24;
       }
   

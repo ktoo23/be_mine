@@ -57,8 +57,9 @@ export const PostForm = () => {
             type="button"
             onClick={onClickButton}
           >
-            사진 업로드
+            사진 업로드 (1장)
           </button>
+          <p className={styles.misc}>*이미지를 클릭하면 삭제됩니다.</p>
           <input
             id="image"
             name="image"
@@ -72,6 +73,19 @@ export const PostForm = () => {
           {preview && (
             <img src={preview} alt="미리보기" onClick={onRemoveImage} />
           )}
+        </div>
+        <div className={styles.inputDiv}>
+          <input
+            type="radio"
+            id="dog"
+            name="species"
+            value="강아지"
+            defaultChecked
+          />
+          <label htmlFor="dog">강아지</label>
+
+          <input type="radio" id="cat" name="species" value="고양이" />
+          <label htmlFor="cat">고양이</label>
         </div>
         <div className={styles.inputDiv}>
           <label className={styles.inputLabel} htmlFor="number">

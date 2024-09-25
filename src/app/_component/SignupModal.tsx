@@ -44,15 +44,15 @@ export const SignupModal = () => {
         </div>
         <div className={styles['modal-card-content']}>
           <form>
-            <label htmlFor="id" className={styles.label}>
-              아이디
+            <label htmlFor="name" className={styles.label}>
+              이름
             </label>
             <input
-              id="id"
-              name="id"
+              id="name"
+              name="name"
               className={styles.input}
               type="text"
-              placeholder="아이디"
+              placeholder="매미"
             />
             <label htmlFor="email" className={styles.label}>
               이메일
@@ -62,7 +62,7 @@ export const SignupModal = () => {
               name="email"
               className={styles.input}
               type="text"
-              placeholder="이메일"
+              placeholder="mami@example.com"
             />
             <label htmlFor="password" className={styles.label}>
               비밀번호
@@ -83,6 +83,19 @@ export const SignupModal = () => {
               className={styles.input}
               type="password"
               placeholder="******"
+            />
+            <label
+              htmlFor="password-check"
+              className={cn(styles.label, styles['label-profile'])}
+            >
+              프로필
+            </label>
+            <input
+              id="image"
+              name="image"
+              className={styles['input-profile']}
+              type="file"
+              accept="image/*"
             />
             <button className={styles['login-button']}>회원가입</button>
           </form>

@@ -3,14 +3,20 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { LuUser } from 'react-icons/lu';
+import { LuLogOut } from 'react-icons/lu';
 import cn from 'classnames';
 
 import styles from './globalNavbar.module.scss';
-import { usePathname } from 'next/navigation';
-import { useSession } from 'next-auth/react';
+import { usePathname, useRouter } from 'next/navigation';
+import { signOut, useSession } from 'next-auth/react';
+import { DropdownMenu } from './DropdownMenu';
+import { useDropdownStore } from '@/store/dropdown';
+import { Router } from 'express';
 
 export const GlobalNavbar = () => {
   const { data } = useSession();
+  const { isOpen, setOpen } = useDropdownStore();
+  const router = useRouter();
 
   const path = usePathname();
   let className = '';
@@ -18,6 +24,10 @@ export const GlobalNavbar = () => {
   if (path !== '/') {
     className += 'bg-white';
   }
+
+  const handleDropdownState = () => {
+    setOpen(!isOpen);
+  };
 
   return (
     <header className={cn(styles['gnb-header'], styles[`${className}`])}>
@@ -51,6 +61,12 @@ export const GlobalNavbar = () => {
           </nav>
         </div>
 
+        {data?.user && (
+          <div className={cn('lg-hidden', styles['logout-button'])}>
+            <LuLogOut onClick={() => signOut({ redirectTo: '/' })} />
+          </div>
+        )}
+
         <div className={cn(styles['gnb-right'], 'lg-only')}>
           <div className={styles['my-menu']}>
             {!data ? (
@@ -58,8 +74,8 @@ export const GlobalNavbar = () => {
                 <LuUser className={styles['user-icon']} />
               </Link>
             ) : (
-              <Link
-                href="/profile"
+              <div
+                onClick={handleDropdownState}
                 className={cn(
                   styles['my-menu-button'],
                   styles['profile-image'],
@@ -73,11 +89,12 @@ export const GlobalNavbar = () => {
                   }
                   alt="프로필 사진"
                 />
-              </Link>
+              </div>
             )}
           </div>
         </div>
       </div>
+      <DropdownMenu />
     </header>
   );
 };

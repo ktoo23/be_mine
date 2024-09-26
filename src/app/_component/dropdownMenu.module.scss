@@ -1,0 +1,52 @@
+.dropdown-menu {
+  display: none;
+  background-color: $white;
+  border-radius: 5px;
+  font-size: $font-size-12;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  overflow: hidden;
+  
+  &-item {
+    @include flexbox(start);
+    padding: 6px 8px;
+    height: 32px;
+    cursor: pointer;
+
+    &:hover,
+    &:active {
+      background-color: $border;
+    }
+
+    span {
+      margin-left: 5px;
+    }
+  }
+
+  @include responsive(T) {
+    font-size: $font-size-14;
+
+    &-item {  
+      span {
+        margin-left: 7px;
+      }
+    }
+  }
+
+  @include responsive(D) {
+    font-size: $font-size-18;
+
+    &.is-active {
+      display: inline-block;
+      position: absolute;
+      top: $gnb-height-sm + 10px;
+      right: 3px;
+    }
+
+    &-item {  
+      padding: 20px 24px;
+      span {
+        margin-left: 7px;
+      }
+    }
+  }
+}

@@ -6,6 +6,8 @@ import './reset.css';
 import '../styles/globals.scss';
 import { GlobalNavbar } from './_component/GlobalNavbar';
 import { LocalNavbar } from './_component/LocalNavbar';
+import { MSWComponent } from './_component/MSWComponent';
+import Providers from './_component/Providers';
 
 const pretendard = localFont({
   src: '../../public/fonts/PretendardVariable.woff2',
@@ -29,10 +31,13 @@ export default function RootLayout({
   return (
     <html lang="kr" className={`${pretendard.variable}`}>
       <body className={pretendard.className}>
-        <GlobalNavbar />
-        <LocalNavbar />
-        {children}
-        {modal}
+        <MSWComponent />
+        <Providers>
+          <GlobalNavbar />
+          <LocalNavbar />
+          {children}
+          {modal}
+        </Providers>
       </body>
     </html>
   );

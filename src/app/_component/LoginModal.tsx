@@ -26,10 +26,16 @@ export const LoginModal = () => {
     router.back();
   };
 
+  const onClick = (provider: 'google' | 'naver' | 'kakao') => {
+    signIn(provider, {
+      redirectTo: '/',
+    });
+  };
+
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { isSubmitting, errors },
   } = useForm<z.infer<typeof SigninSchema>>({
     resolver: zodResolver(SigninSchema),
     defaultValues: {
@@ -97,7 +103,9 @@ export const LoginModal = () => {
                   : '비밀번호가 틀렸습니다.'}
               </p>
             )}
-            <button className={styles['login-button']}>로그인</button>
+            <button className={styles['login-button']} disabled={isSubmitting}>
+              {isSubmitting ? '로그인 중..' : '로그인'}
+            </button>
           </form>
           <div className={styles['link-wrapper']}>
             <Link href="/auth/signup">계정이 없어요!</Link>
@@ -107,14 +115,17 @@ export const LoginModal = () => {
         <div className={styles['modal-card-footer']}>
           <p>간편하게 로그인 하기</p>
           <div className={styles['button-wrapper']}>
-            <button className={styles['button-kakao']}>
+            <button
+              className={styles['button-kakao']}
+              onClick={() => onClick('kakao')}
+            >
               <RiKakaoTalkFill />
             </button>
             <button className={styles['button-naver']}>
-              <SiNaver />
+              <SiNaver onClick={() => onClick('naver')} />
             </button>
             <button className={styles['button-google']}>
-              <FcGoogle />
+              <FcGoogle onClick={() => onClick('google')} />
             </button>
           </div>
         </div>

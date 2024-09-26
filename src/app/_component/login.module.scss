@@ -89,6 +89,12 @@
           content: none;
         }
       }
+
+      .error {
+        margin-bottom: 10px;
+        font-weight: 600;
+        color: $lavender;
+      }
     }
 
     .input {
@@ -128,6 +134,11 @@
 
       &:hover {
         background-color: $lavender-dark;
+      }
+
+      &:disabled {
+        background-color: $tertiary;
+        cursor: not-allowed;
       }
     }
   }

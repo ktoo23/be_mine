@@ -1,37 +1,53 @@
 'use client';
 
-import cn from 'classnames';
+import * as z from 'zod';
 
+import cn from 'classnames';
+import { useRouter, useSearchParams } from 'next/navigation';
+import Link from 'next/link';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { SigninSchema } from '@/schemas';
+import { signIn } from 'next-auth/react';
+
+import styles from './login.module.scss';
+import { SubTitle } from './SubTitle';
 import { FcGoogle } from 'react-icons/fc';
 import { RiKakaoTalkFill } from 'react-icons/ri';
 import { SiNaver } from 'react-icons/si';
 import { IoCloseCircleOutline } from 'react-icons/io5';
 
-import styles from './login.module.scss';
-import { usePathname, useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
-import Link from 'next/link';
-import { SubTitle } from './SubTitle';
-
 export const LoginModal = () => {
   const router = useRouter();
-  const path = usePathname();
-  const [isOpen, setIsOpen] = useState(true);
-
-  useEffect(() => {
-    if (path !== '/auth/login') {
-      setIsOpen(false); // 경로가 '/auth/login'이 아닌 경우 모달 닫기
-    } else {
-      setIsOpen(true); // 경로가 '/auth/login'인 경우 모달 열기
-    }
-  }, [path]);
+  const params = useSearchParams();
+  let authError = params.has('code');
 
   const onClickClose = () => {
-    router.replace('/'); // 경로 변경
-    setIsOpen(false); // 모달 닫기
+    router.back();
   };
 
-  if (!isOpen) return null; // 모달이 닫히면 렌더링하지 않음
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<z.infer<typeof SigninSchema>>({
+    resolver: zodResolver(SigninSchema),
+    defaultValues: {
+      email: '',
+      password: '',
+    },
+  });
+
+  const onSubmit = async (values: z.infer<typeof SigninSchema>) => {
+    try {
+      await signIn('credentials', {
+        ...values,
+        redirectTo: '/',
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <div className={cn(`${styles['modal-background']}`)}>
@@ -47,27 +63,40 @@ export const LoginModal = () => {
           </button>
         </div>
         <div className={styles['modal-card-content']}>
-          <form>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <label htmlFor="email" className="visually-hidden">
               이메일
             </label>
             <input
               id="email"
-              name="email"
               className={styles.input}
               type="text"
               placeholder="이메일"
+              {...register('email')}
             />
+            {errors?.email && (
+              <p className={styles.error}>{errors.email.message}</p>
+            )}
             <label htmlFor="password" className="visually-hidden">
               비밀번호
             </label>
             <input
               id="password"
-              name="password"
               className={styles.input}
               type="password"
               placeholder="비밀번호"
+              {...register('password')}
             />
+            {errors?.password && (
+              <p className={styles.error}>{errors.password.message}</p>
+            )}
+            {authError && (
+              <p className={styles.error}>
+                {params.get('code') === 'no_user'
+                  ? '존재하지 않는 회원입니다.'
+                  : '비밀번호가 틀렸습니다.'}
+              </p>
+            )}
             <button className={styles['login-button']}>로그인</button>
           </form>
           <div className={styles['link-wrapper']}>

@@ -5,8 +5,11 @@ import styles from './localNavbar.module.scss';
 import { LuDog, LuUser } from 'react-icons/lu';
 import { LuPencil } from 'react-icons/lu';
 import { MdOutlineQuiz } from 'react-icons/md';
+import { auth } from '@/auth';
 
-export const LocalNavbar = () => {
+export const LocalNavbar = async () => {
+  const session = await auth();
+
   return (
     <nav className={cn(`${styles.lnb}`, 'lg-hidden')}>
       <ul className={styles['lnb-list']}>
@@ -32,9 +35,23 @@ export const LocalNavbar = () => {
           </Link>
         </li>
         <li className={styles['lnb-item']}>
-          <Link href="/auth/login">
-            <LuUser className={styles.icon} />내 프로필
-          </Link>
+          {!session ? (
+            <Link href="/auth/login">
+              <LuUser className={styles.icon} />
+              로그인
+            </Link>
+          ) : (
+            <Link href="/profile" className={styles['profile-image']}>
+              <img
+                src={
+                  session.user?.image
+                    ? session.user.image
+                    : '/images/img-user-default.png'
+                }
+                alt="프로필 사진"
+              />
+            </Link>
+          )}
         </li>
       </ul>
     </nav>

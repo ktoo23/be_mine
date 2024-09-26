@@ -6,10 +6,12 @@ import { LuUser } from 'react-icons/lu';
 import cn from 'classnames';
 
 import styles from './globalNavbar.module.scss';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
+import { useSession } from 'next-auth/react';
 
 export const GlobalNavbar = () => {
-  const router = useRouter();
+  const { data } = useSession();
+
   const path = usePathname();
   let className = '';
 
@@ -51,12 +53,28 @@ export const GlobalNavbar = () => {
 
         <div className={cn(styles['gnb-right'], 'lg-only')}>
           <div className={styles['my-menu']}>
-            <button
-              className={styles['my-menu-button']}
-              onClick={() => router.replace('/auth/login')}
-            >
-              <LuUser className={styles['user-icon']} />
-            </button>
+            {!data ? (
+              <Link href="/auth/login" className={styles['my-menu-button']}>
+                <LuUser className={styles['user-icon']} />
+              </Link>
+            ) : (
+              <Link
+                href="/profile"
+                className={cn(
+                  styles['my-menu-button'],
+                  styles['profile-image'],
+                )}
+              >
+                <img
+                  src={
+                    data.user?.image
+                      ? data.user.image
+                      : '/images/img-user-default.png'
+                  }
+                  alt="프로필 사진"
+                />
+              </Link>
+            )}
           </div>
         </div>
       </div>

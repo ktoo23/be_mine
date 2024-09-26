@@ -1,8 +1,11 @@
 import NextAuth, { CredentialsSignin } from 'next-auth';
-import GitHub from 'next-auth/providers/github';
 import Credentials from 'next-auth/providers/credentials';
 import type { Provider } from 'next-auth/providers';
 import { SigninSchema } from './schemas';
+
+import google from 'next-auth/providers/google';
+import naver from 'next-auth/providers/naver';
+import Kakao from 'next-auth/providers/kakao';
 
 const providers: Provider[] = [
   Credentials({
@@ -43,6 +46,18 @@ const providers: Provider[] = [
       console.log('user', user);
       return user;
     },
+  }),
+  google({
+    clientId: process.env.GOOGLE_CLIENT_ID,
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+  }),
+  naver({
+    clientId: process.env.NAVER_CLIENT_ID,
+    clientSecret: process.env.NAVER_CLIENT_SECRET,
+  }),
+  Kakao({
+    clientId: process.env.KAKAO_CLIENT_ID,
+    clientSecret: process.env.KAKAO_CLIENT_SECRET,
   }),
 ];
 

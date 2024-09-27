@@ -14,6 +14,15 @@ const nextConfig = {
     @use 'mixins/index' as *;
   `,
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'loremflickr.com',
+        port: '',
+      },
+    ], // faker가 사용하는 도메인 추가
+  },
 };
 
 export default nextConfig;

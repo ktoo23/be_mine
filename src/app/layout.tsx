@@ -8,6 +8,7 @@ import { GlobalNavbar } from './_component/GlobalNavbar';
 import { LocalNavbar } from './_component/LocalNavbar';
 import { MSWComponent } from './_component/MSWComponent';
 import Providers from './_component/Providers';
+import RQProvider from './_component/RQProvider';
 
 const pretendard = localFont({
   src: '../../public/fonts/PretendardVariable.woff2',
@@ -35,8 +36,10 @@ export default function RootLayout({
         <Providers>
           <GlobalNavbar />
           <LocalNavbar />
-          {children}
-          {modal}
+          <RQProvider>
+            {children}
+            {modal}
+          </RQProvider>
         </Providers>
       </body>
     </html>

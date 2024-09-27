@@ -4,24 +4,31 @@ import cn from 'classnames';
 
 import styles from '@/app/_component/animalCard.module.scss';
 import detailStyles from './diaryAnimalCard.module.scss';
+import { DiarySummary } from '@/model/DiarySummary';
 
-export const DiaryAnimalCard = () => {
+type Props = {
+  diary: DiarySummary;
+};
+
+export const DiaryAnimalCard = ({ diary }: Props) => {
   return (
     <Link href="/" className={styles['animal-content']}>
       <div className={styles['animal-image']}>
         <Image
-          src="/images/20240913130110.jpg"
+          src={diary.imageUrl}
           alt="임보 동물 정보"
           width={348}
           height={480}
         />
       </div>
       <div className={cn(styles.overlay, detailStyles['detail-overlay'])}>
-        <h3 className={styles['animal-info']}>앙꼬/남</h3>
+        <h3 className={styles['animal-info']}>
+          {diary.animal.name}/{diary.animal.gender}
+        </h3>
         <p
           className={cn(styles['animal-number'], detailStyles['detail-number'])}
         >
-          공고번호: 2024-02-077
+          공고번호: {diary.announcementNo}
         </p>
       </div>
     </Link>

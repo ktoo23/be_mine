@@ -2,28 +2,52 @@
   margin-bottom: 30px;
 
   .image-card {
+    position: relative;
+    margin: 0 auto;
+    width: 350px;
     border-radius: 20px;
     overflow: hidden;
 
+    &.landscape {
+      padding-bottom: 56.25%; /* 16:9 가로 비율 */
+    }
+    
+    &.portrait {
+      padding-bottom: 133.33%; /* 4:3 비율을 위해 */
+    }
+    
+    &.moderate-tall {
+      padding-bottom: 156.86%
+    }
+
+    // &.tall {
+    //   padding-bottom: 177.78%; /* 9:16 세로 비율 */
+    // }
+
+    &.square {
+      padding-bottom: 100%;
+    }
+    
     img {
-      display: block;
-      width: 100%;
-      height: 100%;
       object-fit: cover;
     }
   }
 
   @include responsive(T) {
-    position: relative;
     margin: 0 auto 40px;
+
+    .image-card {
+      width: 617px;
+    }
   }
 
   @include responsive(D) {
     float: left;
-    margin-bottom: 50px;
     width: 555px;
-
+    margin-bottom: 50px;
+    
     .image-card {
+      width: 555px;
       border-radius: 20px;
     }
   }

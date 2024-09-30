@@ -1,17 +1,28 @@
+import { Animal } from '@/model/Animal';
 import styles from './animalInfo.module.scss';
 
-export const AnimalInfo = () => {
+type Props = {
+  animal: Animal;
+  announcementNo: string;
+  date: Date;
+};
+
+export const AnimalInfo = ({ animal, announcementNo, date }: Props) => {
   /*
    *TODO: Tag component 분리
    *
    */
+  const createdDate = date.toString().slice(0, 10);
   return (
     <div className={styles['animal-info']}>
       <div className={styles['animal-info-misc']}>
-        <p className={styles.number}>공고번호: 2024-01-785</p>
-        <p className={styles.date}>2024-09-16</p>
+        <p className="visually-hidden">{animal.id}</p>
+        <p className={styles.number}>공고번호: {announcementNo}</p>
+        <p className={styles.date}>{createdDate}</p>
       </div>
-      <h1 className={styles['animal-info-title']}>장군이/남/12kg</h1>
+      <h1 className={styles['animal-info-title']}>
+        {animal.name}/{animal.gender}/{animal.weight}
+      </h1>
       <ul className={styles['tag-list']}>
         <li className={styles['tag-item']}># 애교쟁이</li>
         <li className={styles['tag-item']}># 사람좋아</li>
@@ -23,35 +34,35 @@ export const AnimalInfo = () => {
         <dl className={styles['info-list']}>
           <div className={styles['info-item']}>
             <dt>현 상황</dt>
-            <dd>임보가능</dd>
+            <dd>{animal.currentStatus}</dd>
           </div>
           <div className={styles['info-item']}>
             <dt>임보종류</dt>
-            <dd>입양전제</dd>
+            <dd>{animal.fosterType}</dd>
           </div>
           <div className={styles['info-item']}>
             <dt>이름</dt>
-            <dd>장군이</dd>
+            <dd>{animal.name}</dd>
           </div>
           <div className={styles['info-item']}>
             <dt>구조 지역</dt>
-            <dd>전남 광양</dd>
+            <dd>{animal.rescueLocation}</dd>
           </div>
           <div className={styles['info-item']}>
             <dt>성별</dt>
-            <dd>남</dd>
+            <dd>{animal.gender}</dd>
           </div>
           <div className={styles['info-item']}>
             <dt>중성화 여부</dt>
-            <dd>완료</dd>
+            <dd>{animal.neutered}</dd>
           </div>
           <div className={styles['info-item']}>
             <dt>출생시기</dt>
-            <dd>2024 추정</dd>
+            <dd>{animal.birth}</dd>
           </div>
           <div className={styles['info-item']}>
             <dt>몸무게</dt>
-            <dd>12kg</dd>
+            <dd>{animal.weight}</dd>
           </div>
         </dl>
       </div>

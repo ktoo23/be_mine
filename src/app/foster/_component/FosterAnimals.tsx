@@ -16,6 +16,7 @@ export const FosterAnimals = () => {
   const { data } = useQuery<FosterSummary[]>({
     queryKey: ['fosters', selectedTab],
     queryFn: selectedTab === 'dog' ? getFostersDog : getFostersCat,
+    staleTime: 60 * 1000,
   });
 
   return (

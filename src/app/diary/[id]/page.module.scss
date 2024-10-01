@@ -9,8 +9,6 @@
 .diary-container {
   position: relative;
   padding-bottom: 10px;
-  border: 1px solid $dark;
-  border-radius: 10px;
   overflow: hidden;
 
   @include responsive(T) {
@@ -19,8 +17,8 @@
   }
 
   @include responsive(D) {
+    width: 975px;
     padding-bottom: 0;
-    width: 1200px;
-    border-radius: 20px;
+    border: 1px solid $border;
   }
 }

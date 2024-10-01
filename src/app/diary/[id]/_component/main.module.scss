@@ -1,45 +1,33 @@
-@mixin text-style($size) {
-  font-family: 'SangSangShinb7';
-  font-size: $size;
-}
 
 .diary { 
   &-image {
-    border-bottom: 1px solid $tertiary;
+    position: relative;
+    margin-bottom: 14px;
+    width: 100%;
+    height: 480px;
+    border-radius: 10px;
+    overflow: hidden;
 
     img {
       display: block;
-      width: 100%;
-      height: 100%;
+      object-fit: cover;
     }
   }
 
   &-content {
-    @include text-style($font-size-24);
-    font-weight: 500;
-
-    .diary-line {
-      border-bottom: 1px solid $tertiary; /* 줄 추가 */
-      margin-bottom: 10px; /* 줄 간격 */
-      padding-left: 5px;
-      padding-bottom: 5px; /* 줄 안의 텍스트 간격 */
-      height: 33px;
+    .title {
+      margin-bottom: 8px;
+      font-size: $font-size-18;
+      font-weight: 600;
     }
 
-    .diary-memo {
-      padding-left: 10px;
-
-      span {
-        display: inline-block;
-        padding-bottom: 5px;
-        font-weight: 600;
-        border-bottom: 1px solid $dark;
-      }
+    .diary-txt {
+      font-size: $font-size-14;
+      line-height: 150%;
     }
   }
 
   @include responsive(T) {
-
     &-content {
       font-size: $font-size-30;
 
@@ -61,25 +49,20 @@
     }
 
     &-image {
-      width: 500px;
-      height: auto;
+      margin-bottom: 0;
+      width: 540px;
+      height: 600px;
+      border-radius: 0;
     }
 
     &-content {
-      position: relative;
-      margin-bottom: 0;
-      width: 700px;
-      
-      .diary-txt {
-        height: 300px;
-        overflow-y: auto;
-      }
+      margin-left: 16px;
+      padding-top: 16px;
+      height: 600px;
+      overflow-y: auto;
 
-      .diary-memo {
-        position: absolute;
-        top: 50%;
-        left: 10px;
-        font-size: $font-size-40;
+      .title {
+        font-size: $font-size-24;
       }
     }
   }

@@ -1,11 +1,37 @@
 .diary-header {
-  @include flexbox(between);
-  @include text-style('SangSangShinb7', $font-size-24);
-  padding: 10px;
-  height: 50px;
-  border-bottom: 1px solid $tertiary;
+  @include flexbox(start);
+  padding: 14px 4px 14px 0;
+  height: 70px;
+  border-bottom: 1px solid $border;
 
-  @include responsive(T) {
-      font-size: $font-size-30;
+  .user-image {
+    margin-right: 14px;
+    width: 42px;
+    height: 42px;
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .detail {
+    flex-grow: 1;
+  }
+
+  .user-name {
+    margin-bottom: 4px;
+    font-size: $font-size-14;
+    font-weight: 600;
+  }
+
+  .date {
+    font-size: $font-size-12;
+  }
+
+  @include responsive(D) {
+    padding-left: 16px;
   }
 }

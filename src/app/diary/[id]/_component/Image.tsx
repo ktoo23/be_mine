@@ -4,14 +4,14 @@ import { Image as Iimage } from '@/model/Image';
 import NextImage from 'next/image';
 import cn from 'classnames';
 
-import styles from './imageSlider.module.scss';
+import styles from './main.module.scss';
 import { useEffect, useState } from 'react';
 
 type Props = {
   image: Iimage;
 };
 
-export const FosterImage = ({ image }: Props) => {
+export const DiaryImage = ({ image }: Props) => {
   const [orientation, setOrientation] = useState('landscape');
 
   useEffect(() => {
@@ -35,7 +35,7 @@ export const FosterImage = ({ image }: Props) => {
   }, [setOrientation]);
 
   return (
-    <div className={cn(styles['image-card'], styles[`${orientation}`])}>
+    <div className={cn(styles['diary-image'], styles[`${orientation}`])}>
       <NextImage
         sizes="(max-width: 720px) 350px, (max-width: 1420px) 617px, 555px"
         fill

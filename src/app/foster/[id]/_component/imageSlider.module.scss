@@ -9,23 +9,19 @@
     overflow: hidden;
 
     &.landscape {
-      padding-bottom: 56.25%; /* 16:9 가로 비율 */
+      aspect-ratio: 16 / 9;
     }
     
     &.portrait {
-      padding-bottom: 133.33%; /* 4:3 비율을 위해 */
+      aspect-ratio: 4 / 3;
     }
     
     &.moderate-tall {
-      padding-bottom: 156.86%
+      aspect-ratio: 7 / 11;
     }
-
-    // &.tall {
-    //   padding-bottom: 177.78%; /* 9:16 세로 비율 */
-    // }
-
+  
     &.square {
-      padding-bottom: 100%;
+      aspect-ratio: 1 / 1;
     }
     
     img {

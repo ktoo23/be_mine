@@ -37,7 +37,7 @@ export const FosterImage = ({ image }: Props) => {
   return (
     <div className={cn(styles['image-card'], styles[`${orientation}`])}>
       <NextImage
-        sizes="(max-width: 721px) 350px, (max-width: 1421px) 617px, 555px"
+        sizes="(max-width: 720px) 350px, (max-width: 1420px) 617px, 555px"
         fill
         src={image.imageUrl}
         alt="동물 이미지"

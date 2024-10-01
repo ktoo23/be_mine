@@ -17,24 +17,3 @@
     background-color: $lavender-light;
   }
 }
-
-.animal-desc {
-  @include text-style(null, $font-size-12, $border);
-  display: -webkit-box;
-  line-height: 150%;
-  white-space: normal;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  word-break: keep-all;   // 문단으로 끊어져서 줄바꿈 
-
-  @include responsive(T) {
-    font-size: $font-size-14;
-  }
-  
-  @include responsive(D) {
-    font-size: $font-size-18;
-  }
-}
-

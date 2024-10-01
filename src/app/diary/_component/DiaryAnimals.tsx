@@ -12,7 +12,6 @@ import { getDiaries } from '@/lib/getDiaries';
 
 export const DiaryAnimals = () => {
   const { selectedTab } = useDiaryTabStore();
-  console.log(selectedTab);
   const { data } = useQuery<DiarySummary[]>({
     queryKey: ['diaries', selectedTab],
     queryFn: () => getDiaries(selectedTab),

@@ -12,10 +12,12 @@ import { DiaryAnimals } from './_component/DiaryAnimals';
 import { getDiaries } from '@/lib/getDiaries';
 
 const DiaryAnimalsPage = async () => {
+  const selectedTab = 'dog';
   const queryClient = new QueryClient();
-  await queryClient.prefetchQuery({
+  await queryClient.prefetchInfiniteQuery({
     queryKey: ['diaries', 'dog'],
-    queryFn: () => getDiaries('dog'),
+    queryFn: ({ pageParam = 0 }) => getDiaries({ selectedTab, pageParam }),
+    initialPageParam: 0,
   });
 
   const dehydratedState = dehydrate(queryClient);

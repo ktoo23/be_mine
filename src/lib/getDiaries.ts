@@ -1,6 +1,11 @@
-export async function getDiaries(selectedTab: string) {
+type Props = {
+  selectedTab: string;
+  pageParam: number;
+};
+
+export async function getDiaries({ selectedTab, pageParam }: Props) {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/diaries/${selectedTab}`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/diaries/${selectedTab}?cursor=${pageParam}`,
     {
       next: {
         tags: ['diaries', selectedTab],

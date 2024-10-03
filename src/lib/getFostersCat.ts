@@ -1,6 +1,10 @@
-export async function getFostersCat() {
+type Props = {
+  pageParam?: number;
+};
+
+export async function getFostersCat({ pageParam }: Props) {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/fosters/cat`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/fosters/cat?cursor=${pageParam}`,
     {
       next: {
         tags: ['fosters', 'cat'],

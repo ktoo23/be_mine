@@ -12,9 +12,10 @@ import { getFostersDog } from '@/lib/getFostersDog';
 
 const FosterAnimalsPage = async () => {
   const queryClient = new QueryClient();
-  await queryClient.prefetchQuery({
+  await queryClient.prefetchInfiniteQuery({
     queryKey: ['fosters', 'dog'],
     queryFn: getFostersDog,
+    initialPageParam: 0,
   });
 
   const dehydratedState = dehydrate(queryClient);

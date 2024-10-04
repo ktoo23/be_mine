@@ -4,7 +4,7 @@ import * as z from 'zod';
 
 import cn from 'classnames';
 import { usePathname, useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -14,24 +14,14 @@ import { signup } from '@/lib/signup';
 import styles from './login.module.scss';
 import { IoCloseCircleOutline } from 'react-icons/io5';
 import { SubTitle } from './SubTitle';
+import { Slide, toast } from 'react-toastify';
 
 export const SignupModal = () => {
   const router = useRouter();
-  const path = usePathname();
-  const [isOpen, setIsOpen] = useState(true);
-
-  useEffect(() => {
-    if (path !== '/auth/signup') {
-      setIsOpen(false); // 경로가 '/auth/login'이 아닌 경우 모달 닫기
-    } else {
-      setIsOpen(true); // 경로가 '/auth/login'인 경우 모달 열기
-    }
-  }, [path]);
-
-  if (!isOpen) return null; // 모달이 닫히면 렌더링하지 않음
+  const [message, setMessage] = useState('');
 
   const onClickClose = () => {
-    router.replace('/');
+    router.back();
   };
 
   const {
@@ -51,7 +41,16 @@ export const SignupModal = () => {
 
   const onSubmit = async (values: z.infer<typeof SignupSchema>) => {
     // await new Promise((resolve) => setTimeout(resolve, 2000)); // 가짜 비동기 작업
-    signup(values);
+    const result = await signup(values);
+
+    if (result?.message) {
+      setMessage(result.message);
+    } else {
+      toast.success('🦄 회원가입 성공!', {
+        transition: Slide,
+      });
+      router.replace('/login');
+    }
   };
 
   return (
@@ -137,9 +136,12 @@ export const SignupModal = () => {
             <button className={styles['login-button']} disabled={isSubmitting}>
               {isSubmitting ? '제출 중..' : '회원가입'}
             </button>
+            {message && <p className={styles.error}>{message}</p>}
           </form>
           <div className={styles['link-wrapper']}>
-            <Link href="/auth/login">계정 있어요!</Link>
+            <Link href="/auth/login" replace>
+              계정 있어요!
+            </Link>
           </div>
         </div>
       </div>

@@ -7,16 +7,14 @@ import { LuLogOut } from 'react-icons/lu';
 import cn from 'classnames';
 
 import styles from './globalNavbar.module.scss';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { signOut, useSession } from 'next-auth/react';
 import { DropdownMenu } from './DropdownMenu';
 import { useDropdownStore } from '@/store/dropdown';
-import { Router } from 'express';
 
 export const GlobalNavbar = () => {
   const { data } = useSession();
   const { isOpen, setOpen } = useDropdownStore();
-  const router = useRouter();
 
   const path = usePathname();
   let className = '';
@@ -70,7 +68,7 @@ export const GlobalNavbar = () => {
         <div className={cn(styles['gnb-right'], 'lg-only')}>
           <div className={styles['my-menu']}>
             {!data ? (
-              <Link href="/auth/login" className={styles['my-menu-button']}>
+              <Link href="/login" className={styles['my-menu-button']}>
                 <LuUser className={styles['user-icon']} />
               </Link>
             ) : (

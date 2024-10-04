@@ -9,6 +9,8 @@ import { LocalNavbar } from './_component/LocalNavbar';
 import { MSWComponent } from './_component/MSWComponent';
 import Providers from './_component/Providers';
 import RQProvider from './_component/RQProvider';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const pretendard = localFont({
   src: '../../public/fonts/PretendardVariable.woff2',
@@ -34,6 +36,18 @@ export default function RootLayout({
       <body className={pretendard.className}>
         <MSWComponent />
         <Providers>
+          <ToastContainer
+            position="bottom-right"
+            autoClose={3000}
+            hideProgressBar
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+          />
           <GlobalNavbar />
           <LocalNavbar />
           <RQProvider>

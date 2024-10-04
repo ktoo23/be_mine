@@ -108,7 +108,9 @@ export const LoginModal = () => {
             </button>
           </form>
           <div className={styles['link-wrapper']}>
-            <Link href="/auth/signup">계정이 없어요!</Link>
+            <Link href="/signup" replace>
+              계정이 없어요!
+            </Link>
             <Link href="/">비밀번호 분실했어요</Link>
           </div>
         </div>

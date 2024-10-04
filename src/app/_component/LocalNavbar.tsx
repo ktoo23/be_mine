@@ -36,7 +36,7 @@ export const LocalNavbar = async () => {
         </li>
         <li className={styles['lnb-item']}>
           {!session ? (
-            <Link href="/auth/login">
+            <Link href="/login">
               <LuUser className={styles.icon} />
               로그인
             </Link>

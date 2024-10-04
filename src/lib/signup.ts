@@ -25,9 +25,15 @@ export const signup = async (values: z.infer<typeof SignupSchema>) => {
 
     console.log(response.status);
 
-    // TODO: 회원가입과 동시에 로그인
+    if (!response.ok) {
+      if (response.status === 403) {
+        return { message: '이미 사용 중인 아이디입니다.' };
+      }
+      // 서버 응답이 200-299가 아닐 때의 처리
+      return { message: '회원가입에 실패했습니다. 다시 시도해 주세요.' };
+    }
   } catch (error) {
     console.error(error);
-    return { message: null };
+    return { message: '잘못된 요청입니다.' };
   }
 };

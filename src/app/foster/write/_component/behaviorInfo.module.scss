@@ -1,0 +1,96 @@
+$padding-sm: 50px;
+$padding-md: 100px;
+
+$sm: 10px;
+$md: 20px;
+
+$sm-height: 50px;
+$md-height: 70px;
+$lg-height: 80px;
+
+.radioGroup {
+  position: relative;
+  display: block;
+  margin-bottom: $sm;
+  text-align: center;
+  
+  .level1Text,
+  .level2Text {
+    color: $primary-color;
+    font-weight: bold;
+  }
+
+  .level1Text {
+    display: block;
+    margin-bottom: 5px;
+    color: $lavender-light;
+    text-align: left;
+  }
+
+  .level2Text {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: $lavender;
+  }
+
+  .size-1, 
+  .size-5 {
+    width: 30px !important;
+    height: 30px !important;
+  }
+
+  .size-2,
+  .size-4 {
+    width: 25px !important;
+    height: 25px !important;
+  }
+
+  .size-3 {
+    width: 20px !important;
+    height: 20px !important;
+  }
+
+  @include responsive(T) {
+    @include flexbox(start);
+    margin-bottom: $md;
+
+    .level1Text {
+      margin-bottom: 5px;
+    }
+    
+    .level2Text {
+      position: relative;
+    }
+  }
+
+  @include responsive(D) {
+    .size-1, 
+    .size-5 {
+      width: 45px !important;
+      height: 45px !important;
+    }
+
+    .size-2,
+    .size-4 {
+      width: 35px !important;
+      height: 35px !important;
+    }
+
+    .size-3 {
+      width: 30px !important;
+      height: 30px !important;
+    }
+  }
+}
+
+.radioWrapper {
+  @include flexbox;
+  label {
+    margin-right: $sm;
+  }
+
+  @include responsive(T) {
+    margin: 0 $md;
+  }
+}

@@ -51,7 +51,7 @@ $lg-height: 80px;
   .animal-details,
   .foster-conditions,
   .health-info,
-  .reference-info {
+  .behavior-info {
     margin-bottom: 40px;
 
     div:last-child {
@@ -60,7 +60,7 @@ $lg-height: 80px;
   }
 
   .inputDiv {
-    margin-bottom: $sm;
+    margin-bottom: $md;
 
     .title {
       margin-bottom: $sm;
@@ -81,8 +81,28 @@ $lg-height: 80px;
   }
 
   input[type="radio"] {
+    margin-left: 10px;
+    margin-right: 10px;
     cursor: pointer;
   }
+
+  input[type='radio'] {
+    -webkit-appearance: none; // 웹킷 브라우저에서 기본 스타일 제거
+    -moz-appearance: none; // 모질라 브라우저에서 기본 스타일 제거 
+    appearance: none; // 기본 브라우저에서 기본 스타일 제거
+    width: 15px;
+    height: 15px;
+    border: 1px solid #ccc; // 체크되지 않았을 때의 테두리 색상
+    border-radius: 50%;
+    outline: none; // focus 시에 나타나는 기본 스타일 제거
+    cursor: pointer;
+  }
+  // 체크 시 버튼 모양 스타일
+  input[type='radio']:checked {
+    background-color: $lavender-dark; // 체크 시 내부 원 색상
+    border: 3px solid $white; // 라인이 아닌, 라인과 원 사이 색상
+    box-shadow: 0 0 0 1px $lavender; // 라인
+  }  
 
   .input {
     padding: $sm;
@@ -116,36 +136,6 @@ $lg-height: 80px;
       position: relative;
       top: 2px;
       color: $lavender;
-    }
-  }
-
-  .radioGroup {
-    position: relative;
-    display: block;
-    margin-bottom: $sm;
-    text-align: center;
-    
-    .level1Text,
-    .level2Text {
-      color: $primary-color;
-      font-weight: bold;
-    }
-
-    .level1Text {
-      display: block;
-      text-align: left;
-    }
-
-    .level2Text {
-      position: absolute;
-      top: 0;
-      right: 0;
-    }
-  }
-
-  .radioWrapper {
-    label {
-      margin-right: $sm;
     }
   }
 
@@ -183,7 +173,7 @@ $lg-height: 80px;
     .animal-details,
     .foster-conditions,
     .health-info,
-    .reference-info {
+    .behavior-info {
       margin-bottom: 80px;
     }
 
@@ -207,6 +197,11 @@ $lg-height: 80px;
       }
     }
 
+    input[type='radio'] {
+      width: 20px;
+      height: 20px;
+    }
+
     .input {
       padding: 0 $md;
       height: $md-height;
@@ -221,20 +216,6 @@ $lg-height: 80px;
       padding-bottom: $md;
       margin-bottom: 40px;
       font-size: $font-size-20;;
-    }
-
-    .radioGroup {
-      @include flexbox(start);
-      margin-bottom: $md;
-
-      .level2Text {
-        position: relative;
-      }
-      
-    }
-
-    .radioWrapper {
-      margin: 0 $md;
     }
 
     .button-wrapper {
@@ -268,6 +249,11 @@ $lg-height: 80px;
       .title {
         font-size: $font-size-24;
       }
+    }
+
+    input[type='radio'] {
+      width: 24px;
+      height: 24px;
     }
 
     .input {

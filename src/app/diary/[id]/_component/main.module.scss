@@ -34,11 +34,6 @@
       font-size: $font-size-18;
       font-weight: 600;
     }
-
-    .diary-txt {
-      font-size: $font-size-14;
-      line-height: 150%;
-    }
   }
 
   @include responsive(T) {
@@ -47,16 +42,8 @@
     }
 
     &-content {
-      font-size: $font-size-30;
-
-      .diary-txt {
-        margin-bottom: 10px;
-      }
-
-      .diary-line {
-        margin-bottom: 0;
-        padding-top: 10px;
-        height: 44px;
+      .title {
+        font-size: $font-size-30;
       }
     }
   }
@@ -76,10 +63,6 @@
       padding-top: 16px;
       height: 500px;
       overflow-y: auto;
-
-      .title {
-        font-size: $font-size-24;
-      }
     }
   }
 }

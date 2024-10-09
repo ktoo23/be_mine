@@ -1,79 +1,61 @@
 'use client';
-import { ChangeEventHandler, FormEventHandler, useRef, useState } from 'react';
-import TextareaAutosize from 'react-textarea-autosize';
+import { useState } from 'react';
 
 import styles from './postForm.module.scss';
 import cn from 'classnames';
-import { LuUpload } from 'react-icons/lu';
-import { SlPicture } from 'react-icons/sl';
-import { TfiWrite } from 'react-icons/tfi';
+
+import { EditorInput } from './EditorInput';
+import { Input } from './Input';
+import { UploadImage } from './UploadImage';
+import { useMutation } from '@tanstack/react-query';
+import { postDiary } from '@/lib/postDiary';
+import { useRouter } from 'next/navigation';
+import { Slide, toast } from 'react-toastify';
 
 export const PostForm = () => {
-  const imageRef = useRef<HTMLInputElement>(null);
-  const previewRef = useRef(null);
-  const [preview, setPreview] = useState<string | null>();
+  const router = useRouter();
+  const [editorContent, setEditorContent] = useState('');
 
-  const onUpload: ChangeEventHandler<HTMLInputElement> = (e) => {
-    e.preventDefault();
-    console.log(e.target.value);
-    const file = (e.target.files as FileList)[0];
-    console.log(file);
-    if (file) {
-      const reader = new FileReader();
+  const { mutate, isPending } = useMutation({
+    mutationFn: async (formData: FormData) => {
+      const response = await postDiary(formData);
 
-      reader.onloadend = () => {
-        setPreview(reader.result as string);
-      };
-
-      reader.readAsDataURL(file);
-    }
-  };
-
-  const onClickButton = () => {
-    imageRef.current?.click();
-  };
-
-  const onRemoveImage = () => {
-    setPreview(null);
-  };
+      return response;
+    },
+    onSuccess: async (response) => {
+      const newPost = await response.json();
+      console.log(newPost);
+      router.replace('/diary');
+      toast.success('🦄 게시글이 업로드되었습니다!', {
+        transition: Slide,
+      });
+    },
+    onError: (error) => {
+      console.error(error);
+      toast.error('업로드 중 에러가 발생했습니다.', {
+        transition: Slide,
+      });
+    },
+  });
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
 
-    // formData에서 textarea의 값 가져오기
-    const content = formData.get('content') as string;
+    // TODO: validation 작성
+    formData.append('content', editorContent);
+
+    console.log('SUBMIT', editorContent);
+    mutate(formData);
+  };
+  const handleEditorBlur = (content: string) => {
+    setEditorContent(content);
   };
 
-  const onSubmit: FormEventHandler = (e) => {
-    e.preventDefault();
-  };
   return (
     <div className={styles.post}>
       <form onSubmit={handleSubmit}>
-        <div className={styles['upload-image-wrapper']}>
-          <button
-            className={styles.uploadButton}
-            type="button"
-            onClick={onClickButton}
-          >
-            사진 업로드 (1장)
-          </button>
-          <p className={styles.misc}>*이미지를 클릭하면 삭제됩니다.</p>
-          <input
-            id="image"
-            name="image"
-            hidden
-            ref={imageRef}
-            onChange={onUpload}
-            className={styles.input}
-            type="file"
-            accept="image/*"
-          />
-          {preview && (
-            <img src={preview} alt="미리보기" onClick={onRemoveImage} />
-          )}
-        </div>
+        <UploadImage />
         <div className={styles.inputDiv}>
           <input
             type="radio"
@@ -87,58 +69,27 @@ export const PostForm = () => {
           <input type="radio" id="cat" name="species" value="고양이" />
           <label htmlFor="cat">고양이</label>
         </div>
+        <Input
+          label="공고번호"
+          id="announcement-no"
+          name="announcementNo"
+          className={cn(styles.input, styles['input-width'])}
+        />
+        <Input
+          label="제목"
+          id="title"
+          name="title"
+          placeholder="일기 제목을 작성해주세요."
+          className={cn(styles.input, styles['input-width'])}
+        />
         <div className={styles.inputDiv}>
-          <label className={styles.inputLabel} htmlFor="number">
-            공고번호
-          </label>
-          <input
-            id="number"
-            name="number"
-            className={styles.input}
-            placeholder=""
-            required
-          />
-        </div>
-        <div className={styles.inputDiv}>
-          <label className={styles.inputLabel} htmlFor="content">
-            오늘 일기
-          </label>
-          <TextareaAutosize
-            id="content"
-            name="content"
-            className={cn(styles.input, styles.text)}
-            placeholder="오늘 일기를 작성해주세요. (300자 이내)"
-            required
-          />
-        </div>
-        <div className={cn(styles.inputDiv, styles.activities)}>
-          <label className={styles.inputLabel} htmlFor="activity1">
-            오늘 한 일 3가지
-          </label>
-          <input
-            id="activity1"
-            name="activities"
-            className={styles.input}
-            placeholder="아무것도 안하기"
-            required
-          />
-          <input
-            id="activity2"
-            name="activities"
-            className={styles.input}
-            placeholder="눕기"
-            required
-          />
-          <input
-            id="activity3"
-            name="activities"
-            className={styles.input}
-            placeholder="앉기"
-            required
-          />
+          <div className={styles.inputLabel}>오늘 일기</div>
+          <EditorInput onBlur={handleEditorBlur} />
         </div>
         <div className={styles['button-wrapper']}>
-          <button className={styles.actionButton}>일기 작성 끝</button>
+          <button className={styles.actionButton} disabled={isPending}>
+            일기 작성 끝
+          </button>
         </div>
       </form>
     </div>

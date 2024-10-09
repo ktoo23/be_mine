@@ -17,15 +17,29 @@ $lg-height: 80px;
     margin-bottom: $sm;
   }
 
-  .activities {
-    input {
-      margin-bottom: $sm;
-
-      &:last-child {
-        margin-bottom: 0;
-      }
-    }
+  input[type="radio"] {
+    margin-left: 10px;
+    margin-right: 10px;
+    cursor: pointer;
   }
+
+  input[type='radio'] {
+    -webkit-appearance: none;
+    -moz-appearance: none; 
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    outline: none;
+    cursor: pointer;
+  }
+
+  input[type='radio']:checked {
+    background-color: $lavender-dark; 
+    border: 3px solid $white; 
+    box-shadow: 0 0 0 1px $lavender;
+  }  
 
   .upload-image-wrapper {
     margin-bottom: 20px;
@@ -96,10 +110,6 @@ $lg-height: 80px;
 
     .inputDiv {
       margin-bottom: 40px;
-
-      textarea {
-        padding: 20px;
-      }
     }
 
     .inputLabel {
@@ -141,6 +151,11 @@ $lg-height: 80px;
       width: 250px;
       height: $md-height;
       font-size: $font-size-18;
+
+      &-disabled {
+        background-color: $tertiary;
+        cursor: not-allowed;
+      }
     }
   }
 
@@ -156,6 +171,10 @@ $lg-height: 80px;
     .input {
       height: $lg-height;
       font-size: $font-size-20;
+
+      &.input-width {
+        width: 490px;
+      }
     }
 
     .upload-image-wrapper {

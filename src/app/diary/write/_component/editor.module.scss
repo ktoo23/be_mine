@@ -1,0 +1,35 @@
+.container {
+  @include column-flexbox(start);
+  position: relative;
+  .editor {
+    height: 250px;
+  }
+
+  button {
+    width: 32px;
+    height: 32px;
+  }
+
+  .icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .popover {
+    display: none;
+
+    &.is-active {
+      display: block;
+      position: absolute;
+      top: -200px;
+      left: 0;
+    }
+  }
+}
+
+.wrapper {
+  width: 100%;
+  border: 1px solid $border;
+  border-radius: 10px;
+  overflow: hidden;
+}

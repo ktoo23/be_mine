@@ -1,0 +1,64 @@
+.post {
+  &-count {
+    padding: 10px 0;
+    font-size: $font-size-14;
+    color: $primary-color;
+  }
+
+  &-list {
+    display: grid;
+    grid-gap: 3px;
+    grid-template-columns: repeat(3, 1fr);
+    width: 390px;
+    margin: 0 auto;
+  }
+
+  &-card {
+    width: 130px;
+    height: 130px;
+    cursor: pointer;
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  @include responsive(T) {
+    &-count {
+      margin: 0 auto;
+      width: 678px;
+    }
+
+    &-list {
+      margin: 0 auto;
+      width: 678px;
+    }
+
+    &-card {
+      width: 100%;
+      height: 224px;
+    }
+  }
+  @include responsive(D) {
+    &-count {
+      width: 935px;
+      font-size: $font-size-18;
+    }
+
+    &-list {
+      width: 935px;
+    }
+
+    &-card {
+      height: 307px;
+    }
+  }
+}
+
+.no-data {
+  @include flexbox;
+  height: 80px;
+}

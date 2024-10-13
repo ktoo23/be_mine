@@ -1,0 +1,54 @@
+.user {
+  &-card {
+    @include flexbox(start);
+    padding: 0 16px;
+    margin-bottom: 50px;
+  }
+
+  &-photo {
+    margin-right: 16px;
+    width: 77px;
+    height: 77px;
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+
+  &-name {
+    flex-grow: 1;
+    font-size: $font-size-20;
+    font-weight: 500;
+  }
+
+  &-update-btn {
+    padding: 10px 16px;
+    font-size: $font-size-14;
+    color: $white;
+    background-color: $lavender;
+    border-radius: 5px;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: $lavender-dark;
+    }
+  }
+
+  @include responsive(D) {
+    &-card {
+      margin: 0 auto;
+      margin-bottom: 50px;
+      width: 935px;
+    }
+
+    &-name {
+      margin-right: 10px;
+      flex-grow: 0;
+      font-size: $font-size-24;
+    }
+  }
+}

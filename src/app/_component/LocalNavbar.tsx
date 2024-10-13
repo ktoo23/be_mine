@@ -41,7 +41,10 @@ export const LocalNavbar = async () => {
               로그인
             </Link>
           ) : (
-            <Link href="/profile" className={styles['profile-image']}>
+            <Link
+              href={`/${session.user?.id}/mypage`}
+              className={styles['profile-image']}
+            >
               <img
                 src={
                   session.user?.image

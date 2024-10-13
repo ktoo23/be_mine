@@ -92,7 +92,7 @@ export const GlobalNavbar = () => {
           </div>
         </div>
       </div>
-      <DropdownMenu />
+      <DropdownMenu id={data?.user?.id as string} />
     </header>
   );
 };

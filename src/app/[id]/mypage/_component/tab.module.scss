@@ -1,0 +1,23 @@
+.tab-list {
+  @include flexbox(around);
+  padding: 12px 0;
+  background-color: $white;
+  border-top: 1px solid $border;
+  border-bottom: 1px solid $border;
+
+  @include responsive(D) {
+    margin: 0 auto;
+    width: 935px;
+  }
+}
+
+.tab-item {
+  height: 100%;
+  color: $primary-color;
+  cursor: pointer;
+
+  &.tab-indicator {
+    font-weight: 500;
+    color: $lavender;
+  }
+}

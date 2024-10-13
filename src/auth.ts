@@ -74,6 +74,19 @@ export const providerMap = providers
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   providers,
+  session: {
+    strategy: 'jwt',
+    maxAge: 3600, // 세션이 1시간 동안 유지됨
+  },
+  callbacks: {
+    session({ session }) {
+      session.user.id = '341';
+      return session;
+    },
+    async jwt({ token }) {
+      return token;
+    },
+  },
   pages: {
     signIn: '/auth/login',
     newUser: '/auth/signup',

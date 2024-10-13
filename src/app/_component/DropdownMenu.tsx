@@ -8,12 +8,17 @@ import { CgProfile } from 'react-icons/cg';
 import { useDropdownStore } from '@/store/dropdown';
 import { signOut } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
+import { Session } from '@auth/core/types';
 
 interface DropdownState {
   isOpen: boolean;
   setOpen(isOpen: boolean): void;
 }
-export const DropdownMenu = () => {
+
+type Props = {
+  id: string;
+};
+export const DropdownMenu = ({ id }: Props) => {
   let dropdownStore: DropdownState = useDropdownStore();
   const router = useRouter();
 
@@ -29,7 +34,7 @@ export const DropdownMenu = () => {
         className={styles['dropdown-menu-item']}
         onClick={() => {
           dropdownStore.setOpen(!dropdownStore.isOpen);
-          router.replace('/profile');
+          router.replace(`/${id}/mypage`);
         }}
       >
         <CgProfile />

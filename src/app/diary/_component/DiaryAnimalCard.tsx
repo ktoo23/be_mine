@@ -12,7 +12,7 @@ type Props = {
 
 export const DiaryAnimalCard = ({ diary }: Props) => {
   return (
-    <Link href="/" className={styles['animal-content']}>
+    <Link href={`/diary/${diary.id}`} className={styles['animal-content']}>
       <div className={styles['animal-image']}>
         <Image
           src={diary.imageUrl}

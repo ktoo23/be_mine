@@ -13,7 +13,7 @@ type Props = {
 
 export const FosterAnimalCard = ({ foster }: Props) => {
   return (
-    <Link href="/" className={styles['animal-content']}>
+    <Link href={`/foster/${foster.id}`} className={styles['animal-content']}>
       <div className={detailStyles['btn-wrapper']}>
         <button className={detailStyles.status}>
           {foster.animal.currentStatus}

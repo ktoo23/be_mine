@@ -1,24 +1,20 @@
-import {
-  dehydrate,
-  HydrationBoundary,
-  QueryClient,
-} from '@tanstack/react-query';
+import { HydrationBoundary } from '@tanstack/react-query';
 
 import { SubTitle } from '../_component/SubTitle';
 import subTitleStyles from '../_component/subTitle.module.scss';
 import { FosterTab } from './_component/FosterTab';
 import { FosterAnimals } from './_component/FosterAnimals';
-import { getFostersDog } from '@/lib/getFostersDog';
+import { prefetchData } from '@/utils/prefetchData';
+import { getFosters } from '@/lib/getFosters';
 
 const FosterAnimalsPage = async () => {
-  const queryClient = new QueryClient();
-  await queryClient.prefetchInfiniteQuery({
-    queryKey: ['fosters', 'dog'],
-    queryFn: getFostersDog,
+  const selectedTab = 'dog';
+
+  const dehydratedState = await prefetchData({
+    queryKey: ['fosters', selectedTab],
+    queryFn: ({ pageParam = 0 }) => getFosters({ selectedTab, pageParam }),
     initialPageParam: 0,
   });
-
-  const dehydratedState = dehydrate(queryClient);
 
   return (
     <>

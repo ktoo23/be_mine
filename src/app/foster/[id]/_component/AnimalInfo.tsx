@@ -12,6 +12,16 @@ export const AnimalInfo = ({ animal, announcementNo, date }: Props) => {
    *TODO: Tag component 분리
    *
    */
+  const animalInfo = [
+    { label: '현 상황', value: animal.currentStatus },
+    { label: '임보종류', value: animal.fosterType },
+    { label: '이름', value: animal.name },
+    { label: '구조 지역', value: animal.rescueLocation },
+    { label: '성별', value: animal.gender },
+    { label: '중성화 여부', value: animal.neutered },
+    { label: '출생시기', value: animal.birth },
+    { label: '몸무게', value: animal.weight },
+  ];
   const createdDate = date.toString().slice(0, 10);
   return (
     <div className={styles['animal-info']}>
@@ -32,38 +42,12 @@ export const AnimalInfo = ({ animal, announcementNo, date }: Props) => {
 
       <div className={styles['animal-info-detail']}>
         <dl className={styles['info-list']}>
-          <div className={styles['info-item']}>
-            <dt>현 상황</dt>
-            <dd>{animal.currentStatus}</dd>
-          </div>
-          <div className={styles['info-item']}>
-            <dt>임보종류</dt>
-            <dd>{animal.fosterType}</dd>
-          </div>
-          <div className={styles['info-item']}>
-            <dt>이름</dt>
-            <dd>{animal.name}</dd>
-          </div>
-          <div className={styles['info-item']}>
-            <dt>구조 지역</dt>
-            <dd>{animal.rescueLocation}</dd>
-          </div>
-          <div className={styles['info-item']}>
-            <dt>성별</dt>
-            <dd>{animal.gender}</dd>
-          </div>
-          <div className={styles['info-item']}>
-            <dt>중성화 여부</dt>
-            <dd>{animal.neutered}</dd>
-          </div>
-          <div className={styles['info-item']}>
-            <dt>출생시기</dt>
-            <dd>{animal.birth}</dd>
-          </div>
-          <div className={styles['info-item']}>
-            <dt>몸무게</dt>
-            <dd>{animal.weight}</dd>
-          </div>
+          {animalInfo.map((info, index) => (
+            <div className={styles['info-item']} key={index}>
+              <dt>{info.label}</dt>
+              <dd>{info.value}</dd>
+            </div>
+          ))}
         </dl>
       </div>
     </div>

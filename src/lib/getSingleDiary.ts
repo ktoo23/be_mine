@@ -10,6 +10,7 @@ export const getSingleDiary = async ({
       next: {
         tags: ['diaries', id],
       },
+      cache: 'no-store',
       credentials: 'include',
     },
   );

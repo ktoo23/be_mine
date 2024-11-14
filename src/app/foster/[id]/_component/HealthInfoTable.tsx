@@ -1,33 +1,16 @@
 import { HealthInformation } from '@/model/HealthInformation';
-import styles from './table.module.scss';
+import { Table } from './Table';
 
 type Props = {
   content: HealthInformation;
 };
 
 export const HealthInfoTable = ({ content }: Props) => {
-  return (
-    <div className={styles['table-wrapper']}>
-      <table>
-        <tbody>
-          <tr>
-            <th>접종 현황</th>
-            <td>{content.vaccinationStatus}</td>
-          </tr>
-          <tr>
-            <th>검사 현황</th>
-            <td>{content.testStatus}</td>
-          </tr>
-          <tr>
-            <th>병력 사항</th>
-            <td>{content.medicalHistory}</td>
-          </tr>
-          <tr>
-            <th>기타 사항</th>
-            <td></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  );
+  const rows = [
+    { label: '접종 현황', value: content.vaccinationStatus },
+    { label: '검사 현황', value: content.testStatus },
+    { label: '병력 사항', value: content.medicalHistory },
+    { label: '기타 사항', value: '' }, // 값이 없는 경우 빈 문자열을 전달
+  ];
+  return <Table rows={rows} />;
 };

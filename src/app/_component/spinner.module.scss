@@ -1,0 +1,15 @@
+.spinner {
+  @include flexbox;
+  height: 100px;
+
+  .icon {
+    @include spinner-animation;
+    font-size: $font-size-22;
+  } 
+
+  @include responsive(T) {
+    .icon {
+      font-size: $font-size-40;
+    }
+  }
+}

@@ -3,7 +3,7 @@
 import * as z from 'zod';
 
 import cn from 'classnames';
-import { usePathname, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
@@ -13,7 +13,7 @@ import { signup } from '@/lib/signup';
 
 import styles from './login.module.scss';
 import { IoCloseCircleOutline } from 'react-icons/io5';
-import { SubTitle } from './SubTitle';
+import { PageTitle } from './PageTitle';
 import { Slide, toast } from 'react-toastify';
 
 export const SignupModal = () => {
@@ -46,7 +46,7 @@ export const SignupModal = () => {
     if (result?.message) {
       setMessage(result.message);
     } else {
-      toast.success('🦄 회원가입 성공!', {
+      toast.success('회원가입 성공!', {
         transition: Slide,
       });
       router.replace('/login');
@@ -56,7 +56,7 @@ export const SignupModal = () => {
   return (
     <div className={cn(`${styles['modal-background']}`)}>
       <div className={styles['modal-card']}>
-        <SubTitle title="회원가입" />
+        <PageTitle title="회원가입" />
         <div className={styles['modal-card-header']}>
           <button
             type="button"

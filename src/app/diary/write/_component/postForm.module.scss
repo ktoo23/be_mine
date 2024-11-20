@@ -91,6 +91,12 @@ $lg-height: 80px;
     }
   }
 
+  .message {
+    margin-top: 10px;
+    color: $lavender;
+    font-weight: 600;
+  }
+
   .button-wrapper {
     @include flexbox;
     margin-top: 20px;

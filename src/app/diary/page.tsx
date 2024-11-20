@@ -1,17 +1,24 @@
 import { HydrationBoundary } from '@tanstack/react-query';
+import { getDiaries } from '@/lib/getDiaries';
+import { prefetchInfiniteData } from '@/utils/prefetchInifiniteData';
 
-import subTitleStyles from '../_component/subTitle.module.scss';
+import { auth } from '@/auth';
+import Link from 'next/link';
 
-import { SubTitle } from '../_component/SubTitle';
+import pageTitleStyles from '../_component/pageTitle.module.scss';
+import styles from './page.module.scss';
+
+import { PageTitle } from '../_component/PageTitle';
 import { DiaryTab } from './_component/DiaryTab';
 import { DiaryAnimals } from './_component/DiaryAnimals';
-import { getDiaries } from '@/lib/getDiaries';
-import { prefetchData } from '@/utils/prefetchData';
+import { PiPencil } from 'react-icons/pi';
 
 const DiaryAnimalsPage = async () => {
+  const session = await auth();
+
   const selectedTab = 'dog';
 
-  const dehydratedState = await prefetchData({
+  const dehydratedState = await prefetchInfiniteData({
     queryKey: ['diaries', selectedTab],
     queryFn: ({ pageParam = 0 }) => getDiaries({ selectedTab, pageParam }),
     initialPageParam: 0,
@@ -19,10 +26,18 @@ const DiaryAnimalsPage = async () => {
 
   return (
     <>
-      <div className={subTitleStyles['title-wrapper']}>
-        <SubTitle title="임보 동물 일기" />
+      <div className={pageTitleStyles['title-wrapper']}>
+        <PageTitle title="임보 동물 일기" />
         <DiaryTab />
       </div>
+      {session && (
+        <div className={styles['post-button']}>
+          <Link href="/diary/write">
+            <PiPencil className={styles.icon} />
+            <span>일기 작성하러 가기</span>
+          </Link>
+        </div>
+      )}
       <HydrationBoundary state={dehydratedState}>
         <DiaryAnimals />
       </HydrationBoundary>

@@ -11,7 +11,7 @@ import { SigninSchema } from '@/schemas';
 import { signIn } from 'next-auth/react';
 
 import styles from './login.module.scss';
-import { SubTitle } from './SubTitle';
+import { PageTitle } from './PageTitle';
 import { FcGoogle } from 'react-icons/fc';
 import { RiKakaoTalkFill } from 'react-icons/ri';
 import { SiNaver } from 'react-icons/si';
@@ -58,7 +58,7 @@ export const LoginModal = () => {
   return (
     <div className={cn(`${styles['modal-background']}`)}>
       <div className={styles['modal-card']}>
-        <SubTitle title="로그인" />
+        <PageTitle title="로그인" />
         <div className={styles['modal-card-header']}>
           <button
             type="button"

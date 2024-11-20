@@ -1,7 +1,7 @@
 import { QueryClient, DehydratedState, dehydrate } from '@tanstack/react-query';
 
 type PrefetchSingleDataParams<TQueryFnData> = {
-  queryKey: [string, string]; // 두 요소를 가진 queryKey 배열
+  queryKey: [string, string];
   queryFn: ({
     queryKey,
   }: {

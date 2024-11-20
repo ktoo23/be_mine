@@ -1,16 +1,16 @@
 import { HydrationBoundary } from '@tanstack/react-query';
 
-import { SubTitle } from '../_component/SubTitle';
-import subTitleStyles from '../_component/subTitle.module.scss';
+import { PageTitle } from '../_component/PageTitle';
+import pageTitleStyles from '../_component/pageTitle.module.scss';
 import { FosterTab } from './_component/FosterTab';
 import { FosterAnimals } from './_component/FosterAnimals';
-import { prefetchData } from '@/utils/prefetchData';
+import { prefetchInfiniteData } from '@/utils/prefetchInifiniteData';
 import { getFosters } from '@/lib/getFosters';
 
 const FosterAnimalsPage = async () => {
   const selectedTab = 'dog';
 
-  const dehydratedState = await prefetchData({
+  const dehydratedState = await prefetchInfiniteData({
     queryKey: ['fosters', selectedTab],
     queryFn: ({ pageParam = 0 }) => getFosters({ selectedTab, pageParam }),
     initialPageParam: 0,
@@ -18,8 +18,8 @@ const FosterAnimalsPage = async () => {
 
   return (
     <>
-      <div className={subTitleStyles['title-wrapper']}>
-        <SubTitle title="임보 동물 찾기" />
+      <div className={pageTitleStyles['title-wrapper']}>
+        <PageTitle title="임보 동물 찾기" />
         <FosterTab />
       </div>
       <HydrationBoundary state={dehydratedState}>

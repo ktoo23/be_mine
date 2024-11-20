@@ -1,12 +1,18 @@
 import { QueryClient, DehydratedState, dehydrate } from '@tanstack/react-query';
 
 type PrefetchDataParams<TQueryFnData> = {
-  queryKey: [string, string];
-  queryFn: ({ pageParam }: { pageParam?: number }) => Promise<TQueryFnData>;
+  queryKey: [string, ...string[]];
+  queryFn: ({
+    queryKey,
+    pageParam,
+  }: {
+    queryKey?: [string, ...string[]];
+    pageParam?: number;
+  }) => Promise<TQueryFnData>;
   initialPageParam?: number;
 };
 
-export const prefetchData = async <TQueryFnData>({
+export const prefetchInfiniteData = async <TQueryFnData>({
   queryKey,
   queryFn,
   initialPageParam = 0,

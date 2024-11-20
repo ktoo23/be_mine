@@ -11,6 +11,10 @@ type Props = {
 };
 
 export const DiaryAnimalCard = ({ diary }: Props) => {
+  if (!diary) {
+    return null;
+  }
+
   return (
     <Link href={`/diary/${diary.id}`} className={styles['animal-content']}>
       <div className={styles['animal-image']}>

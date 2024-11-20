@@ -4,7 +4,7 @@ import useThrottle from './useThrottle';
 import { useEffect } from 'react';
 
 type InfiniteScrollOptions<T> = {
-  queryKey: [string, string];
+  queryKey: [string, ...string[]];
   queryFn: ({ pageParam }: { pageParam?: number }) => Promise<T[]>;
   getNextPageParam: (lastPage: T[]) => number | undefined;
   staleTime?: number;
@@ -16,19 +16,20 @@ export const useInfiniteScroll = <T>({
   getNextPageParam,
   staleTime = 60000, // 기본값 60초
 }: InfiniteScrollOptions<T>) => {
-  const { data, isFetching, fetchNextPage, hasNextPage } = useInfiniteQuery<
-    T[],
-    unknown,
-    InfiniteData<T[]>,
-    [string, string],
-    number
-  >({
-    queryKey,
-    queryFn,
-    initialPageParam: 0,
-    getNextPageParam,
-    staleTime,
-  });
+  const { data, isFetchingNextPage, isFetching, fetchNextPage, hasNextPage } =
+    useInfiniteQuery<
+      T[],
+      unknown,
+      InfiniteData<T[]>,
+      [string, ...string[]],
+      number
+    >({
+      queryKey,
+      queryFn,
+      initialPageParam: 0,
+      getNextPageParam,
+      staleTime,
+    });
 
   const { ref, inView } = useInView({ threshold: 0, delay: 0 });
 
@@ -44,5 +45,5 @@ export const useInfiniteScroll = <T>({
     }
   }, [inView, hasNextPage, fetchNextPage, throttledFetchNextPage]);
 
-  return { data, ref };
+  return { data, isFetchingNextPage, ref };
 };

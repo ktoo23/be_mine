@@ -29,6 +29,8 @@ export const UserInfo = ({ id, session }: Props) => {
     return <p>Loading...</p>;
   }
 
+  if (error) return <div>유저 정보 가져오기 실패</div>;
+
   return (
     <div className={styles['user-card']}>
       <div className={styles['user-photo']}>

@@ -1,18 +1,10 @@
 'use client';
-import {
-  InfiniteData,
-  useInfiniteQuery,
-  useQuery,
-  useQueryClient,
-} from '@tanstack/react-query';
-import styles from './userPosts.module.scss';
+import { useRouter } from 'next/navigation';
 import { useMypageTabStore } from '@/store/mypageTab';
 import { getUserPosts } from '@/lib/user/getUserPosts';
-import { Post } from '@/model/Post';
-import useThrottle from '@/utils/useThrottle';
-import { useEffect } from 'react';
-import { useInView } from 'react-intersection-observer';
-import { useRouter } from 'next/navigation';
+import { useInfiniteScroll } from '@/hooks/useInfiniteScroll';
+import styles from './userPosts.module.scss';
+import { Spinner } from '@/app/_component/Spinner';
 
 type Props = {
   id: string;
@@ -22,46 +14,18 @@ export const UserPosts = ({ id }: Props) => {
   const tabStore = useMypageTabStore();
   const router = useRouter();
 
-  const { data, isFetching, fetchNextPage, hasNextPage } = useInfiniteQuery<
-    Post[],
-    Object,
-    InfiniteData<Post[]>,
-    [_1: string, _2: string, _3: string, _4: string],
-    number
-  >({
+  const { data, isFetchingNextPage, ref } = useInfiniteScroll<{
+    id: number;
+    imageUrl: string;
+  }>({
     queryKey: ['posts', 'users', id, tabStore.tab || 'foster'],
-    queryFn: getUserPosts,
-    initialPageParam: 0,
+    queryFn: ({ pageParam = 0 }) =>
+      getUserPosts({
+        queryKey: ['posts', 'users', id, tabStore.tab || 'foster'],
+        pageParam,
+      }),
     getNextPageParam: (lastPage) => lastPage.at(-1)?.id,
-    staleTime: 60 * 1000,
-    gcTime: 300 * 1000,
   });
-
-  const queryClient = useQueryClient();
-  const user = queryClient.getQueryData(['users', id]);
-
-  if (!user) {
-    return null;
-  }
-
-  const { ref, inView } = useInView({
-    threshold: 0,
-    delay: 0,
-  });
-
-  const throttledFetchNextPage = useThrottle(() => {
-    if (!isFetching && hasNextPage) {
-      fetchNextPage();
-    }
-  }, 3000);
-
-  useEffect(() => {
-    if (inView) {
-      // 화면에 보일 때
-      // 스크롤 인식 시 throttle 적용하여 호출 제어
-      throttledFetchNextPage();
-    }
-  }, [inView, hasNextPage, fetchNextPage, throttledFetchNextPage]);
 
   const handleMovePost = (id: number) => {
     console.log(tabStore.tab);
@@ -90,6 +54,7 @@ export const UserPosts = ({ id }: Props) => {
           )),
         )}
       </div>
+      {isFetchingNextPage && <Spinner />}
       {data && data?.pages[0].length > 8 && (
         <div ref={ref} style={{ height: 50 }} />
       )}

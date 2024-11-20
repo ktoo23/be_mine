@@ -17,7 +17,8 @@
     width: 130px;
     height: 130px;
     cursor: pointer;
-
+    background-color: $border;
+  
     img {
       display: block;
       width: 100%;
@@ -42,6 +43,7 @@
       height: 224px;
     }
   }
+
   @include responsive(D) {
     &-count {
       width: 935px;

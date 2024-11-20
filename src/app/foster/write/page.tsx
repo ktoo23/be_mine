@@ -1,14 +1,14 @@
 import containerStyles from '@/app/_component/containerStyle.module.scss';
-import subTitleStyles from '@/app/_component/subTitle.module.scss';
+import pageTitleStyles from '@/app/_component/pageTitle.module.scss';
 
-import { SubTitle } from '@/app/_component/SubTitle';
+import { PageTitle } from '@/app/_component/PageTitle';
 import { PostForm } from './_component/PostForm';
 
 const Page = () => {
   return (
     <>
-      <div className={subTitleStyles['title-wrapper']}>
-        <SubTitle title="임보 동물 소개글 작성" />
+      <div className={pageTitleStyles['title-wrapper']}>
+        <PageTitle title="임보 동물 소개글 작성" />
       </div>
       <div className={containerStyles.container}>
         <PostForm />

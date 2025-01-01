@@ -32,7 +32,7 @@ export const PostForm = () => {
       const newPost = await response.json();
       console.log(newPost);
       router.replace('/foster');
-      toast.success('🦄 게시글이 업로드되었습니다!', {
+      toast.success('게시글이 업로드되었습니다!', {
         transition: Slide,
       });
     },

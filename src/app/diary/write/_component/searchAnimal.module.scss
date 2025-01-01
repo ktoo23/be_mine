@@ -1,0 +1,130 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  z-index: $modal-level;
+}
+
+.modal {
+  @include pos-center;
+  padding: 40px 20px;
+  width: calc(100% - 100px);
+  height: calc(100% - 80px);
+  border-radius: 20px;
+  background-color: $white;
+  box-shadow: 0px 3px 20px rgba(0, 0, 0, 0.1);
+  font-size: $font-size-14;
+  overflow: hidden;
+
+  .close-icon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 20px;
+    height: 20px;
+  }
+
+  &-header {
+    margin-bottom: 20px;
+    h1 {
+      font-size: $font-size-16;
+    }
+  }
+
+  .search {
+    margin-bottom: 40px;
+
+    .input-wrapper {
+      position: relative;
+      height: 50px;
+
+      input {
+        padding: 0 60px 0 20px;
+        width: 100%;
+        height: 100%;
+        border: 1px solid $border;
+        border-radius: 10px;
+
+        &:focus {
+          background: #F0F4F8;
+        }
+      }
+  
+      .icon {
+        @include pos-center-y;
+        position: absolute;
+        right: 20px;
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+      }
+    }
+  }
+  
+  p {
+    margin-top: 20px;
+    @include text-style(null, $font-size-16, $border);
+    text-align: center;
+  }
+
+  .misc {
+    @include text-style(null, $font-size-14, $lavender);
+    margin-bottom: 20px;
+    text-align: left;
+
+    &::before {
+      content: '*';
+      width: 1px;
+      height: 1px;
+      margin-right: 2px;
+    }
+  }
+
+  .separator {
+    border: 2px solid $primary-color;
+  }
+
+  &-content {
+    height: 300px;
+    overflow-y: scroll;
+
+    .search-result {
+      display: flex;
+      align-items: center;
+      padding-left: 20px;
+      height: 100px;
+      border-bottom: 1px solid $border;
+      cursor: pointer;
+      transition: background-color 100ms ease-in-out;
+
+      &:hover {
+        background: #F0F4F8;
+      }
+
+      span {
+        margin-right: 20px;
+      }
+
+      strong {
+        font-weight: normal;
+      }
+    }
+  }
+
+  @include responsive(T) {
+    padding: 80px 40px;
+
+    .misc {
+      font-size: $font-size-16;
+    }
+  }
+
+  @include responsive(D) {
+    width: 800px;
+    height: 600px;
+  }
+}

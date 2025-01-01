@@ -11,19 +11,31 @@ import { useMutation } from '@tanstack/react-query';
 import { postDiary } from '@/lib/postDiary';
 import { useRouter } from 'next/navigation';
 import { Slide, toast } from 'react-toastify';
-import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
+import {
+  FormProvider,
+  SubmitHandler,
+  useForm,
+  useController,
+} from 'react-hook-form';
+import { SearchAnimal } from './SearchAnimal';
 
 type FormValues = {
-  announcementNo: string;
   title: string;
+  animalInfo: { id: number; data: string };
 };
 
 export const PostForm = () => {
   const router = useRouter();
   const [editorContent, setEditorContent] = useState('');
+  const [isOpen, setIsOpen] = useState(false);
 
-  const methods = useForm({ defaultValues: { announcementNo: '', title: '' } });
+  const methods = useForm({
+    defaultValues: { title: '', animalInfo: { id: -1, data: '' } },
+  });
   const {
+    control,
+    setError,
+    clearErrors,
     formState: { errors },
   } = methods;
   const { mutate, isPending } = useMutation({
@@ -48,15 +60,30 @@ export const PostForm = () => {
     },
   });
 
-  const onSubmit: SubmitHandler<FormValues> = (values) => {
+  const { field } = useController({
+    name: 'animalInfo', // 폼 필드 이름
+    control,
+  });
+
+  const onSubmit: SubmitHandler<FormValues> = async (values) => {
     console.log(values);
+
+    if (values.animalInfo.id === -1 || values.animalInfo.data === '') {
+      setError('animalInfo', {
+        type: 'manual',
+        message: '동물 정보를 입력해주세요.',
+      });
+      return;
+    }
+
     const formData = new FormData();
 
-    formData.append('announcementNo', values.announcementNo);
+    formData.append('id', field.value.id.toString());
     formData.append('title', values.title);
     formData.append('content', editorContent);
 
-    mutate(formData);
+    await mutate(formData);
+    clearErrors('animalInfo'); // 에러 초기화
   };
 
   const handleEditorBlur = (content: string) => {
@@ -69,25 +96,28 @@ export const PostForm = () => {
         <form onSubmit={methods.handleSubmit(onSubmit)}>
           <UploadImage />
           <div className={styles.inputDiv}>
-            <input
-              type="radio"
-              id="dog"
-              name="species"
-              value="강아지"
-              defaultChecked
-            />
-            <label htmlFor="dog">강아지</label>
+            <div className={styles.inputLabel}>동물 정보</div>
+            <div className={styles.information}>
+              <div className={styles.content}>
+                <p>{field.value?.data || '-'}</p>
+              </div>
+              <button
+                type="button"
+                className={styles['search-button']}
+                onClick={() => setIsOpen(true)}
+              >
+                검색
+              </button>
+            </div>
 
-            <input type="radio" id="cat" name="species" value="고양이" />
-            <label htmlFor="cat">고양이</label>
+            {errors.animalInfo && (
+              <p className={styles.message}>{errors.animalInfo.message}</p>
+            )}
           </div>
-          <Input
-            label="공고번호"
-            id="announcement-no"
-            name="announcementNo"
-            className={cn(styles.input, styles['input-width'])}
-            message="공고 번호를 입력하세요."
-            errors={!!errors?.announcementNo}
+          <SearchAnimal
+            animalField={field}
+            isOpen={isOpen}
+            setIsOpen={setIsOpen}
           />
           <Input
             label="제목"
@@ -104,7 +134,7 @@ export const PostForm = () => {
           </div>
           <div className={styles['button-wrapper']}>
             <button className={styles.actionButton} disabled={isPending}>
-              일기 작성 끝
+              {isPending ? '게시 중...' : '일기 작성 끝'}
             </button>
           </div>
         </form>

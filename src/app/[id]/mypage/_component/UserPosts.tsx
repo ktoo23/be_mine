@@ -36,10 +36,12 @@ export const UserPosts = ({ id }: Props) => {
     }
   };
 
+  const totalCount = data?.pages[0].length;
+
   return (
     <>
       <p className={styles['post-count']}>
-        게시물 <strong>22</strong>개
+        게시물 <strong>{totalCount}</strong>개
       </p>
       <div className={styles['post-list']}>
         {data?.pages.map((page) =>

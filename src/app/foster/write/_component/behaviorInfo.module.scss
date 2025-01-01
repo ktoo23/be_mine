@@ -13,7 +13,7 @@ $lg-height: 80px;
   display: block;
   margin-bottom: $sm;
   text-align: center;
-  
+
   .level1Text,
   .level2Text {
     color: $primary-color;
@@ -34,7 +34,7 @@ $lg-height: 80px;
     color: $lavender;
   }
 
-  .size-1, 
+  .size-1,
   .size-5 {
     width: 30px !important;
     height: 30px !important;
@@ -58,14 +58,14 @@ $lg-height: 80px;
     .level1Text {
       margin-bottom: 5px;
     }
-    
+
     .level2Text {
       position: relative;
     }
   }
 
   @include responsive(D) {
-    .size-1, 
+    .size-1,
     .size-5 {
       width: 45px !important;
       height: 45px !important;

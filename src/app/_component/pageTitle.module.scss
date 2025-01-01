@@ -5,7 +5,7 @@
   @include responsive(T) {
     padding: 200px 40px 30px;
   }
-  
+
   @include responsive(D) {
     margin: 0;
     padding-bottom: 60px;
@@ -15,13 +15,13 @@
     h1 {
       @include text-style(null, $font-size-18, $primary-color);
     }
-  
+
     @include responsive(T) {
       h1 {
         font-size: $font-size-24;
       }
     }
-  
+
     @include responsive(D) {
       margin: 0 auto;
       width: 1400px;

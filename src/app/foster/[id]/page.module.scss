@@ -11,10 +11,10 @@
   }
 
   @include responsive(D) {
-      padding: 0;
-      padding-top: 200px;
-      margin: 0 auto;
-      width: 1300px;
+    padding: 0;
+    padding-top: 200px;
+    margin: 0 auto;
+    width: 1300px;
 
     .section-wrapper {
       width: 555px;

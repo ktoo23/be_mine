@@ -11,19 +11,19 @@
     &.landscape {
       aspect-ratio: 16 / 9;
     }
-    
+
     &.portrait {
       aspect-ratio: 4 / 3;
     }
-    
+
     &.moderate-tall {
       aspect-ratio: 7 / 11;
     }
-  
+
     &.square {
       aspect-ratio: 1 / 1;
     }
-    
+
     img {
       object-fit: cover;
     }
@@ -41,7 +41,7 @@
     float: left;
     width: 555px;
     margin-bottom: 50px;
-    
+
     .image-card {
       width: 555px;
       border-radius: 20px;

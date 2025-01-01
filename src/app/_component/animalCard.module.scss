@@ -26,15 +26,18 @@
       padding: 0 15px 15px 15px;
       width: 100%;
       height: 100%;
-      background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent); /* 하단에서 위로 가는 검은색 그라데이션 */
-     // background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.375776) 57.03%, #000000 100%);
+      background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.7),
+        transparent
+      ); /* 하단에서 위로 가는 검은색 그라데이션 */
+      // background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.375776) 57.03%, #000000 100%);
       color: white; /* 텍스트 색상 */
       box-sizing: border-box;
       border-radius: 10px;
     }
   }
 
-  
   &-image {
     position: relative;
     width: 100%;
@@ -49,12 +52,12 @@
       object-fit: cover;
     }
   }
-  
+
   &-info {
     margin-bottom: 5px;
     font-size: $font-size-20;
   }
-  
+
   &-desc {
     @include text-style(null, $font-size-14, $border);
     display: -webkit-box;
@@ -64,9 +67,9 @@
     text-overflow: ellipsis;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
-    word-break: keep-all;   // 문단으로 끊어져서 줄바꿈 
+    word-break: keep-all; // 문단으로 끊어져서 줄바꿈
   }
-  
+
   &-number {
     @include text-style(null, $font-size-12, $border);
     margin-bottom: 10px;
@@ -100,16 +103,15 @@
     }
 
     &-content {
-
       &:hover,
       &:focus,
       &:active {
         .animal-image {
           transform: scale(1.2);
           -webkit-transform: scale(1.2); /* 크롬, 사파리 */
-          -moz-transform: scale(1.2);  /* 파이어폭스 */
+          -moz-transform: scale(1.2); /* 파이어폭스 */
           -ms-transform: scale(1.2); /* IE */
-          -o-transform: scale(1.2);  /* 오페라 */
+          -o-transform: scale(1.2); /* 오페라 */
         }
 
         .overlay {

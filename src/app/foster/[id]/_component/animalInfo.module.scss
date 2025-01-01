@@ -35,7 +35,7 @@
           padding-bottom: 0;
         }
       }
-      
+
       dt {
         padding-bottom: 10px;
         width: 100px;
@@ -50,7 +50,6 @@
   }
 
   @include responsive(T) {
-
     &-misc {
       margin-bottom: 10px;
       font-size: $font-size-14;
@@ -68,12 +67,12 @@
     &-detail {
       padding: 40px 0px;
       font-size: $font-size-16;
-  
+
       .info-item {
         dt {
           padding-bottom: 15px;
         }
-  
+
         dd {
           padding-bottom: 15px;
           padding-left: 20px;

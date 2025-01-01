@@ -5,7 +5,7 @@
   .icon {
     @include spinner-animation;
     font-size: $font-size-22;
-  } 
+  }
 
   @include responsive(T) {
     .icon {

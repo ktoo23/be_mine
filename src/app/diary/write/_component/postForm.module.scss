@@ -17,30 +17,6 @@ $lg-height: 80px;
     margin-bottom: $sm;
   }
 
-  input[type="radio"] {
-    margin-left: 10px;
-    margin-right: 10px;
-    cursor: pointer;
-  }
-
-  input[type='radio'] {
-    -webkit-appearance: none;
-    -moz-appearance: none; 
-    appearance: none;
-    width: 15px;
-    height: 15px;
-    border: 1px solid #ccc;
-    border-radius: 50%;
-    outline: none;
-    cursor: pointer;
-  }
-
-  input[type='radio']:checked {
-    background-color: $lavender-dark; 
-    border: 3px solid $white; 
-    box-shadow: 0 0 0 1px $lavender;
-  }  
-
   .upload-image-wrapper {
     margin-bottom: 20px;
 
@@ -91,6 +67,29 @@ $lg-height: 80px;
     }
   }
 
+  .information {
+   @include flexbox(start);
+
+    .content {
+      @include flexbox(start);
+      padding: $sm;
+      padding: $sm;
+      margin-right: $sm;
+      width: 200px;
+      height: $sm-height;
+      font-size: $font-size-12;
+      background-color: #F0F4F8;
+      border: 1px solid $border;
+      border-radius: 5px;
+    }
+
+    p {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
   .message {
     margin-top: 10px;
     color: $lavender;
@@ -111,6 +110,21 @@ $lg-height: 80px;
     border-radius: 41px;
   }
 
+  .search-button {
+    width: 50px;
+    height: 50px;
+    border: 1px solid $primary-color;
+    border-radius: 5px;
+    font-size: 12px;
+    transition: background-color 100ms ease-in-out;
+
+    &:hover,
+    &:active, {
+      background-color: $dark;
+      color: $white;
+    }
+  }
+
   @include responsive(T) {
     padding: $padding-md 40px;
 
@@ -121,7 +135,6 @@ $lg-height: 80px;
     .inputLabel {
       margin-bottom: $md;
       font-size: $font-size-18;
-
     }
 
     .input {
@@ -136,12 +149,12 @@ $lg-height: 80px;
         margin-bottom: $md;
         font-size: $font-size-24;
       }
-  
+
       .misc {
         @include text-style(null, $font-size-18, $secondary);
         margin-bottom: $md;
       }
-      
+
       img {
         width: 617px;
         max-height: 900px;
@@ -153,6 +166,14 @@ $lg-height: 80px;
       margin-top: 40px;
     }
 
+    .information {
+      .content {
+        padding: 0 $md;
+        height: $md-height;
+        font-size: $font-size-16;
+      }
+    }
+
     .actionButton {
       width: 250px;
       height: $md-height;
@@ -162,6 +183,12 @@ $lg-height: 80px;
         background-color: $tertiary;
         cursor: not-allowed;
       }
+    }
+
+    .search-button {
+      width: $md-height;
+      height: $md-height;
+      font-size: $font-size-18;
     }
   }
 
@@ -183,11 +210,18 @@ $lg-height: 80px;
       }
     }
 
+    .information {
+      .content {
+        height: $lg-height;
+        font-size: $font-size-20;
+      }
+    }
+
     .upload-image-wrapper {
       .uploadButton {
         font-size: $font-size-24;
       }
-  
+
       img {
         width: 555px;
         max-height: 800px;

@@ -8,8 +8,9 @@
     margin-bottom: 14px;
     border: 1px solid $border;
     border-radius: 10px;
-    transition: background-color 200ms ease-in-out,
-    color 200ms ease-in-out;
+    transition:
+      background-color 200ms ease-in-out,
+      color 200ms ease-in-out;
     cursor: pointer;
 
     &:hover,
@@ -19,7 +20,7 @@
         color: $white;
       }
     }
-    
+
     &:last-child {
       margin-bottom: 0;
     }
@@ -46,22 +47,22 @@
   }
 
   @include responsive(D) {
-      &-list {
-        padding: 80px 0;
+    &-list {
+      padding: 80px 0;
+    }
+
+    &-item {
+      margin-bottom: 20px;
+      border-radius: 20px;
+
+      button {
+        padding: 25px;
+        border-radius: 20px;
       }
 
-      &-item {
-         margin-bottom: 20px;
-         border-radius: 20px;
-
-        button {
-          padding:25px;
-          border-radius: 20px;
-        }
-
-        &:last-child {
-          margin-bottom: 0;
-        }
+      &:last-child {
+        margin-bottom: 0;
       }
+    }
   }
 }

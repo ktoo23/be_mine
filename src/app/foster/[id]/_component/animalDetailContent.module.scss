@@ -3,26 +3,26 @@
   display: block;
   margin-bottom: 10px;
 
-    @include responsive(T) {
-      margin-bottom: 20px;
-      font-size: $font-size-16;
-    }
-
-    @include responsive(D) {
-      font-size: $font-size-22;
-    }
-  }
-
-  .description {
-    @include text-style(null, $font-size-14, $primary-color);
+  @include responsive(T) {
     margin-bottom: 20px;
-    line-height: 150%;
-
-    &:last-child {
-      margin-bottom: 0;
-    }
-
-    @include responsive(D) {
-      font-size: $font-size-16;
-    }
+    font-size: $font-size-16;
   }
+
+  @include responsive(D) {
+    font-size: $font-size-22;
+  }
+}
+
+.description {
+  @include text-style(null, $font-size-14, $primary-color);
+  margin-bottom: 20px;
+  line-height: 150%;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  @include responsive(D) {
+    font-size: $font-size-16;
+  }
+}

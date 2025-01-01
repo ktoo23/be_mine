@@ -44,7 +44,6 @@ $lg-height: 80px;
         max-height: 400px;
       }
     }
-
   }
 
   .animal-info,
@@ -80,7 +79,7 @@ $lg-height: 80px;
     font-weight: bold;
   }
 
-  input[type="radio"] {
+  input[type='radio'] {
     margin-left: 10px;
     margin-right: 10px;
     cursor: pointer;
@@ -88,7 +87,7 @@ $lg-height: 80px;
 
   input[type='radio'] {
     -webkit-appearance: none; // 웹킷 브라우저에서 기본 스타일 제거
-    -moz-appearance: none; // 모질라 브라우저에서 기본 스타일 제거 
+    -moz-appearance: none; // 모질라 브라우저에서 기본 스타일 제거
     appearance: none; // 기본 브라우저에서 기본 스타일 제거
     width: 15px;
     height: 15px;
@@ -102,7 +101,7 @@ $lg-height: 80px;
     background-color: $lavender-dark; // 체크 시 내부 원 색상
     border: 3px solid $white; // 라인이 아닌, 라인과 원 사이 색상
     box-shadow: 0 0 0 1px $lavender; // 라인
-  }  
+  }
 
   .input {
     padding: $sm;
@@ -215,7 +214,7 @@ $lg-height: 80px;
     strong {
       padding-bottom: $md;
       margin-bottom: 40px;
-      font-size: $font-size-20;;
+      font-size: $font-size-20;
     }
 
     .button-wrapper {

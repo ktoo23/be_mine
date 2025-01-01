@@ -68,7 +68,11 @@ export const GlobalNavbar = () => {
         <div className={cn(styles['gnb-right'], 'lg-only')}>
           <div className={styles['my-menu']}>
             {!data ? (
-              <Link href="/login" className={styles['my-menu-button']}>
+              <Link
+                href="/login"
+                className={styles['my-menu-button']}
+                aria-label="로그인 페이지로 이동"
+              >
                 <LuUser className={styles['user-icon']} />
               </Link>
             ) : (

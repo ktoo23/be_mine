@@ -27,7 +27,7 @@ export const ImageSlider = ({ images }: Props) => {
   };
 
   return (
-    <div className={cn('slider-container', styles.container)}>
+    <div className={cn('slider-container', styles.container)} role="region">
       <Slider {...settings}>
         {images.map((image) => (
           <FosterImage key={image.imageId} image={image} />

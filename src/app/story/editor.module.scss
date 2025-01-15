@@ -1,0 +1,135 @@
+.custom {
+  &-layout {
+    position: absolute;
+    inset: 0px;
+    z-index: 300;
+    pointer-events: none;
+  }
+
+  &-toolbar {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    padding: 8px;
+    gap: 8px;
+  }
+
+  &-button {
+    @include flexbox;
+    width: 40px;
+    height: 40px;
+    border-radius: 6px;
+    pointer-events: all;
+
+    &:hover,
+    &[data-isactive='true'] {
+      background-color: rgb(229 229 229 / 0.8);
+    }
+
+    &.is-active {
+      background-color: rgb(229 229 229 / 0.8);
+    }
+
+    .icon {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}
+
+.custom-style-panel {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  margin: 8px;
+  margin-top: 4px;
+  touch-action: auto;
+  overscroll-behavior: none;
+  overflow-x: auto;
+  z-index: 300;
+  pointer-events: all;
+  height: fit-content;
+  max-height: 100%;
+  border-radius: 9px;
+
+  &-content {
+    @include flexbox(start);
+    padding: 2px 10px;
+    border-radius: 24px;
+    min-height: 40px;
+    background-color: $white;
+    overflow-x: auto;
+    column-gap: 2px;
+  }
+}
+
+.text-style-panel {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  grid-auto-flow: row;
+
+  .font-button {
+    padding: 5px 10px;
+    pointer-events: all;
+    border-radius: 9px;
+
+    &.is-active {
+      color: $primary-color;
+      background-color: $white;
+
+      .font-icon {
+        color: black;
+      }
+    }
+  }
+
+  .font-icon {
+    width: 24px;
+    height: 24px;
+    color: $white;
+  }
+}
+
+.color-style-panel {
+  width: 170px;
+  padding: 10px 0;
+  overflow-x: auto;
+  white-space: nowrap;
+  @include no-scrollbar;
+  scroll-behavior: smooth;
+
+  .color-button {
+    pointer-events: all;
+    margin-right: 10px;
+  }
+
+  .color-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    border: 2px solid $white;
+    transition: border 100ms ease-in-out;
+  }
+
+  .slider-container {
+    @include pos-center-x;
+    position: fixed;
+  }
+
+  .slider {
+    margin-right: 10px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: rgb(229 229 229 / 0.8);
+
+    &:hover, &:active {
+      background-color: $white;
+    }
+  }
+}
+

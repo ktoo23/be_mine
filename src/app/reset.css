@@ -103,3 +103,14 @@ address {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+/* 아래 코드 없으면 tldraw에서 적용한 하얀색 글자 테두리 생김 */
+.tl-theme__light {
+  --color-background: transparent !important; /* 배경을 투명하게 설정 */
+}
+
+.tlui-popover__content {
+  border: none !important;
+  box-shadow: none !important;
+  background-color: transparent !important;
+}

@@ -2,7 +2,7 @@
   &-layout {
     position: absolute;
     inset: 0px;
-    z-index: 300;
+    z-index: $canvas-level;
     pointer-events: none;
   }
 
@@ -50,7 +50,7 @@
   touch-action: auto;
   overscroll-behavior: none;
   overflow-x: auto;
-  z-index: 300;
+  z-index: $canvas-level;
   pointer-events: all;
   height: fit-content;
   max-height: 100%;

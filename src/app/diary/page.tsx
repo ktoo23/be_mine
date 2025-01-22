@@ -32,7 +32,7 @@ const DiaryAnimalsPage = async () => {
       </div>
       {session && (
         <div className={styles['post-button']}>
-          <Link href="/diary/write">
+          <Link href="/diary/write" aria-label="임보 일기 작성 버튼">
             <PiPencil className={styles.icon} />
             <span>일기 작성하러 가기</span>
           </Link>

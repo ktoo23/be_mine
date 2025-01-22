@@ -1,0 +1,76 @@
+.image-annotator {
+  @include column-flexbox;
+}
+
+.title {
+  font-size: $font-size-24;
+  margin-bottom: 5px;
+}
+
+.image-picker {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  button {
+    @include flexbox;
+    margin-top: 10px;
+    width: 90px;
+    height: 70px;
+    background-color: rgb(137, 137, 137);
+    border-radius: 10px;
+    transition: backgroundColor 100ms ease-in-out;
+
+    &:hover {
+      background-color: rgb(92, 91, 91);
+    }
+  }
+
+  .icon {
+    width: 40px;
+    height: 40px;
+    color: $white;
+  }
+}
+
+.ImageAnnotator .ImageExport {
+  width: 400px;
+  height: 600px;
+}
+
+.ImageAnnotator .ImageExport img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.image-overlay-screen {
+  pointer-events: none;
+  z-index: -1;
+  fill-opacity: 0.8;
+  stroke: none;
+}
+
+.button-wrapper {
+  @include flexbox;
+
+  button {
+    margin-right: 10px;
+    width: 200px;
+    height: 70px;
+    background-color: rgb(137, 137, 137);
+    color: $white;
+    border-radius: 15px;
+    transition: backgroundColor 100ms ease-in-out;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    &:hover {
+      background-color: rgb(92, 91, 91);
+    }
+  }
+}

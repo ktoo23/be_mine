@@ -6,7 +6,6 @@ import cn from 'classnames';
 
 import { EditorInput } from './EditorInput';
 import { Input } from './Input';
-import { UploadImage } from './UploadImage';
 import { useMutation } from '@tanstack/react-query';
 import { postDiary } from '@/lib/postDiary';
 import { useRouter } from 'next/navigation';
@@ -24,10 +23,15 @@ type FormValues = {
   animalInfo: { id: number; data: string };
 };
 
-export const PostForm = () => {
+type PostFormProps = {
+  result: Blob;
+};
+
+export const PostForm = ({ result }: PostFormProps) => {
   const router = useRouter();
   const [editorContent, setEditorContent] = useState('');
   const [isOpen, setIsOpen] = useState(false);
+  const [src, setSrc] = useState<string | null>(URL.createObjectURL(result));
 
   const methods = useForm({
     defaultValues: { title: '', animalInfo: { id: -1, data: '' } },
@@ -65,8 +69,15 @@ export const PostForm = () => {
     control,
   });
 
+  // Blob 이미지 폼 제출하기 위해 File로 변환
+  const convertBlobToFile = (blob: Blob, fileName: string): File => {
+    return new File([blob], fileName, { type: blob.type });
+  };
+
   const onSubmit: SubmitHandler<FormValues> = async (values) => {
     console.log(values);
+
+    const file = convertBlobToFile(result, 'canvas-image.png');
 
     if (values.animalInfo.id === -1 || values.animalInfo.data === '') {
       setError('animalInfo', {
@@ -77,10 +88,10 @@ export const PostForm = () => {
     }
 
     const formData = new FormData();
-
     formData.append('id', field.value.id.toString());
     formData.append('title', values.title);
     formData.append('content', editorContent);
+    formData.append('image', file);
 
     await mutate(formData);
     clearErrors('animalInfo'); // 에러 초기화
@@ -94,7 +105,23 @@ export const PostForm = () => {
     <div className={styles.post}>
       <FormProvider {...methods}>
         <form onSubmit={methods.handleSubmit(onSubmit)}>
-          <UploadImage />
+          <div
+            style={{
+              marginBottom: '10px',
+              width: '450px',
+              height: '600px',
+            }}
+          >
+            <img
+              src={src!}
+              style={{
+                display: 'block',
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+              }}
+            />
+          </div>
           <div className={styles.inputDiv}>
             <div className={styles.inputLabel}>동물 정보</div>
             <div className={styles.information}>

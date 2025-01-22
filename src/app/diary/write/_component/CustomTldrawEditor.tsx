@@ -1,7 +1,6 @@
 'use client';
 import React, { useEffect, useRef, useState } from 'react';
 import {
-  Tldraw,
   TldrawUiIcon,
   track,
   useDefaultHelpers,
@@ -13,9 +12,12 @@ import {
   TldrawUiPopover,
   TldrawUiPopoverTrigger,
   TldrawUiPopoverContent,
+  exportToBlob,
+  TLShapeId,
 } from 'tldraw';
 import 'tldraw/tldraw.css';
-import styles from './editor.module.scss';
+import styles from './canvas-editor.module.scss';
+import { FaArrowRight } from 'react-icons/fa6';
 
 import { TbPointer } from 'react-icons/tb';
 import {
@@ -31,66 +33,113 @@ import { IoColorPaletteSharp } from 'react-icons/io5';
 import { IconType } from 'react-icons';
 import { useStyleChangeCallback } from '@/hooks/useStyleChangeCallback';
 
-const CustomUi = track(() => {
-  const editor = useEditor();
-  const helpers = useDefaultHelpers();
-  const cstyles = useRelevantStyles();
+interface CustomTldrawEditorProps {
+  imageShapeId: TLShapeId;
+  onDone(result: Blob): void;
+}
 
-  // 스크롤 이벤트 막기
-  useEffect(() => {
-    if (!editor) return;
-    editor.run(() => {
-      editor.setCameraOptions({
-        wheelBehavior: 'none',
+const CustomTldrawEditor = track(
+  ({ imageShapeId, onDone }: CustomTldrawEditorProps) => {
+    const editor = useEditor();
+    const helpers = useDefaultHelpers();
+    const cstyles = useRelevantStyles();
+
+    // 스크롤 이벤트 막기
+    useEffect(() => {
+      if (!editor) return;
+      editor.run(() => {
+        editor.setCameraOptions({
+          wheelBehavior: 'none',
+        });
+        editor.setCamera(editor.getCamera(), { reset: true });
       });
-      editor.setCamera(editor.getCamera(), { reset: true });
-    });
-  }, [editor]);
+    }, [editor]);
+
+    return (
+      <>
+        <div className={styles['custom-layout']}>
+          <div className={styles['custom-toolbar']}>
+            <button
+              type="button"
+              className={styles['custom-button']}
+              data-isactive={editor.getCurrentToolId() === 'select'}
+              onClick={() => editor.setCurrentTool('select')}
+            >
+              <TbPointer className={styles.icon} />
+            </button>
+            <button
+              type="button"
+              className={styles['custom-button']}
+              data-isactive={editor.getCurrentToolId() === 'draw'}
+              onClick={() => editor.setCurrentTool('draw')}
+            >
+              <LuPencil className={styles.icon} />
+            </button>
+            <button
+              type="button"
+              className={styles['custom-button']}
+              data-isactive={editor.getCurrentToolId() === 'eraser'}
+              onClick={() => editor.setCurrentTool('eraser')}
+            >
+              <BsEraser className={styles.icon} />
+            </button>
+            <button
+              type="button"
+              className={styles['custom-button']}
+              data-isactive={editor.getCurrentToolId() === 'text'}
+              onClick={() => editor.setCurrentTool('text')}
+            >
+              <IoTextOutline className={styles.icon} />
+            </button>
+            <button
+              type="button"
+              className={styles['custom-button']}
+              onClick={() => helpers.insertMedia()}
+            >
+              <IoImageOutline className={styles.icon} />
+            </button>
+            <DoneButton imageShapeId={imageShapeId} onClick={onDone} />
+          </div>
+        </div>
+        <CustomStylePanel cstyles={cstyles} />
+      </>
+    );
+  },
+);
+
+const DoneButton = ({
+  imageShapeId,
+  onClick,
+}: {
+  imageShapeId: TLShapeId;
+  onClick(result: Blob): void;
+}) => {
+  const editor = useEditor();
 
   return (
     <>
-      <div className={styles['custom-layout']}>
-        <div className={styles['custom-toolbar']}>
-          <button
-            className={styles['custom-button']}
-            data-isactive={editor.getCurrentToolId() === 'select'}
-            onClick={() => editor.setCurrentTool('select')}
-          >
-            <TbPointer className={styles.icon} />
-          </button>
-          <button
-            className={styles['custom-button']}
-            data-isactive={editor.getCurrentToolId() === 'draw'}
-            onClick={() => editor.setCurrentTool('draw')}
-          >
-            <LuPencil className={styles.icon} />
-          </button>
-          <button
-            className={styles['custom-button']}
-            data-isactive={editor.getCurrentToolId() === 'eraser'}
-            onClick={() => editor.setCurrentTool('eraser')}
-          >
-            <BsEraser className={styles.icon} />
-          </button>
-          <button
-            className={styles['custom-button']}
-            data-isactive={editor.getCurrentToolId() === 'text'}
-            onClick={() => editor.setCurrentTool('text')}
-          >
-            <IoTextOutline className={styles.icon} />
-          </button>
-          <button
-            className={styles['custom-button']}
-            onClick={() => helpers.insertMedia()}
-          >
-            <IoImageOutline className={styles.icon} />
-          </button>
-        </div>
-      </div>
-      <CustomStylePanel cstyles={cstyles} />
+      <button
+        className={styles['custom-button']}
+        onClick={async () => {
+          const blob = await exportToBlob({
+            editor,
+            ids: Array.from(editor.getCurrentPageShapeIds()),
+            format: 'png',
+            opts: {
+              background: false, // true로 했더니 잘려진 에디터까지 같이 보였음 ㅠㅠㅠ
+              bounds: editor.getShapePageBounds(imageShapeId)!,
+              padding: 0,
+              scale: 1,
+            },
+          });
+          onClick(blob!);
+        }}
+      >
+        <FaArrowRight className={styles.icon} />
+      </button>
     </>
   );
-});
+};
 
 interface Props {
   cstyles: ReturnType<typeof useRelevantStyles>;
@@ -118,6 +167,7 @@ const ColorPickerButton = ({ cstyles }: Props) => {
     <TldrawUiPopover id="colors" open={isOpen}>
       <TldrawUiPopoverTrigger>
         <button
+          type="button"
           className={styles['custom-button']}
           onBlur={() => setIsOpen(false)}
         >
@@ -172,6 +222,7 @@ const ColorStylePicker = ({ cstyles }: Props) => {
         >
           {colors.map((item) => (
             <button
+              type="button"
               onClick={() => handleValueChange(DefaultColorStyle, item.value)}
               className={styles['color-button']}
               key={item.value}
@@ -190,10 +241,12 @@ const ColorStylePicker = ({ cstyles }: Props) => {
           ))}
           <div className={styles['slider-container']}>
             <button
+              type="button"
               onClick={handleResetPosition}
               className={styles.slider}
             ></button>
             <button
+              type="button"
               onClick={handleScrollToEnd}
               className={styles.slider}
             ></button>
@@ -210,6 +263,7 @@ const TextPickerButton = ({ cstyles }: Props) => {
     <TldrawUiPopover id="fonts" open={isOpen}>
       <TldrawUiPopoverTrigger>
         <button
+          type="button"
           className={`${styles['custom-button']} ${
             isOpen ? styles['is-active'] : ''
           }`}
@@ -242,6 +296,7 @@ const TextStylePicker = ({ cstyles }: Props) => {
       <div className={styles['text-style-panel']}>
         {fonts.map((item) => (
           <button
+            type="button"
             key={item.value}
             className={`${styles['font-button']} ${
               (font?.type === 'shared' && font.value) === item.value
@@ -285,6 +340,7 @@ const TextAlignButton = ({
 
   return (
     <button
+      type="button"
       className={`${styles['custom-button']} ${
         isActive ? styles['is-active'] : ''
       }`}
@@ -295,36 +351,4 @@ const TextAlignButton = ({
   );
 };
 
-const CanvasEditor = () => {
-  // 동적으로 배경화면 지정
-  const handleMount = () => {
-    const backgroundElement = document.querySelector(
-      '.tl-background',
-    ) as HTMLDivElement;
-    if (backgroundElement) {
-      backgroundElement.style.backgroundImage =
-        "url('/images/20240913130110.jpg')";
-      backgroundElement.style.backgroundSize = 'cover';
-      backgroundElement.style.backgroundPosition = 'center';
-      backgroundElement.style.backgroundRepeat = 'no-repeat';
-    }
-  };
-
-  return (
-    <div
-      style={{
-        position: 'absolute',
-        width: '400px',
-        height: '600px',
-        inset: 100,
-      }}
-      className={styles.editor}
-    >
-      <Tldraw persistenceKey="example" hideUi onMount={handleMount}>
-        <CustomUi />
-      </Tldraw>
-    </div>
-  );
-};
-
-export default CanvasEditor;
+export default CustomTldrawEditor;

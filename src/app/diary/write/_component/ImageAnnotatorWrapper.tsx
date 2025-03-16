@@ -172,7 +172,7 @@ export default function ImageAnnotatorWrapper() {
         <div className={styles['image-annotator']}>
           <StepIndicator />
           {getPhaseTitle()}
-          <PostForm result={state.result} />;
+          <PostForm result={state.result} />
         </div>
       );
   }

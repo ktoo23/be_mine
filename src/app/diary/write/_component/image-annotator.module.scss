@@ -1,49 +1,326 @@
 .image-annotator {
   @include column-flexbox;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
+// 단계 표시 스타일
+.step-indicator {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+  width: 100%;
+  
+  .step {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 120px;
+    
+    &:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      top: 12px;
+      right: -50%;
+      width: 100%;
+      height: 2px;
+      background-color: $border;
+      z-index: 1;
+    }
+    
+    &.active {
+      .step-number {
+        background-color: $lavender;
+        color: $white;
+        transform: scale(1.1);
+        box-shadow: 0 2px 8px rgba($lavender, 0.4);
+      }
+      
+      .step-label {
+        font-weight: 600;
+        color: $lavender-dark;
+      }
+    }
+    
+    &.completed {
+      .step-number {
+        background-color: $lavender-dark;
+        color: $white;
+      }
+      
+      &:not(:last-child)::after {
+        background-color: $lavender-dark;
+      }
+    }
+  }
+  
+  .step-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: $background;
+    color: $primary-color;
+    font-size: $font-size-14;
+    font-weight: 600;
+    margin-bottom: 8px;
+    transition: all 0.3s ease;
+    z-index: 2;
+    border: 2px solid $border;
+  }
+  
+  .step-label {
+    font-size: $font-size-12;
+    color: $secondary;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+}
+
+// 타이틀 스타일 개선
 .title {
+  position: relative;
   font-size: $font-size-24;
-  margin-bottom: 5px;
+  font-weight: 600;
+  color: $lavender-dark;
+  margin-bottom: 20px;
+  text-align: center;
+  padding-bottom: 12px;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(to right, $lavender-light, $lavender-dark);
+    border-radius: 2px;
+  }
+  
+  .highlight {
+    color: $lavender;
+  }
+  
+  .subtitle {
+    display: block;
+    font-size: $font-size-14;
+    color: $secondary;
+    font-weight: 400;
+    margin-top: 8px;
+  }
 }
 
+// 이미지 픽커 개선
 .image-picker {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
+  background-color: $background;
+  padding: 40px 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  
+  p {
+    font-size: $font-size-18;
+    color: $primary-color;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: 500;
+  }
+  
+  .upload-area {
+    position: relative;
+    width: 200px;
+    height: 160px;
+    border: 2px dashed $lavender-light;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: rgba($lavender-light, 0.05);
+    
+    &:hover {
+      border-color: $lavender;
+      background-color: rgba($lavender-light, 0.1);
+      
+      .icon {
+        transform: scale(1.1);
+        color: $lavender;
+      }
+    }
+    
+    .upload-text {
+      font-size: $font-size-14;
+      color: $secondary;
+      margin-top: 10px;
+      text-align: center;
+    }
+  }
+  
   button {
     @include flexbox;
     margin-top: 10px;
     width: 90px;
-    height: 70px;
-    background-color: rgb(137, 137, 137);
-    border-radius: 10px;
-    transition: backgroundColor 100ms ease-in-out;
-
+    height: 90px;
+    background-color: $white;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    border: 2px solid $lavender-light;
+    box-shadow: 0 4px 12px rgba($lavender-dark, 0.15);
+    
     &:hover {
-      background-color: rgb(92, 91, 91);
+      background-color: $lavender-light;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 15px rgba($lavender-dark, 0.25);
+      
+      .icon {
+        color: $white;
+      }
+    }
+    
+    &:active {
+      transform: translateY(-1px);
     }
   }
-
+  
   .icon {
     width: 40px;
     height: 40px;
-    color: $white;
+    color: $lavender;
+    transition: all 0.3s ease;
   }
 }
 
-.ImageAnnotator .ImageExport {
-  width: 400px;
-  height: 600px;
+// 이미지 에디터 컴포넌트
+.image-editor-container {
+  width: 100%;
+  border-radius: 12px;
+  // overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  
+  .editor-header {
+    background-color: $lavender-dark;
+    padding: 12px 20px;
+    color: $white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+    .header-title {
+      font-weight: 600;
+      font-size: $font-size-16;
+    }
+    
+    .tools-info {
+      font-size: $font-size-12;
+      opacity: 0.9;
+    }
+  }
 }
 
-.ImageAnnotator .ImageExport img {
-  display: block;
+// 버튼 스타일 개선
+.button-wrapper {
+  @include flexbox;
+  margin-top: 20px;
+  
+  button {
+    margin-right: 15px;
+    width: 180px;
+    height: 50px;
+    background-color: $lavender;
+    color: $white;
+    border-radius: 25px;
+    font-weight: 500;
+    font-size: $font-size-14;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba($lavender-dark, 0.2);
+    
+    &:last-child {
+      margin-right: 0;
+      background-color: $white;
+      color: $lavender-dark;
+      border: 1px solid $lavender-light;
+      
+      &:hover {
+        background-color: $lavender-light;
+        color: $lavender-dark;
+      }
+    }
+    
+    &:hover {
+      background-color: $lavender-dark;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba($lavender-dark, 0.3);
+    }
+    
+    &:active {
+      transform: translateY(0);
+    }
+  }
+}
+
+// 로딩 상태
+.loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  color: $lavender;
+  font-size: $font-size-16;
+  
+  .loading-spinner {
+    margin-bottom: 15px;
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba($lavender-light, 0.3);
+    border-radius: 50%;
+    border-top-color: $lavender;
+    animation: spin 1s ease-in-out infinite;
+  }
+  
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+}
+
+// 이미지 내보내기 및 미리보기
+.image-export {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
-  height: 100%;
-  object-fit: contain;
+  
+  .preview-container {
+    width: 100%;
+    max-width: 500px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
+  }
 }
 
 .image-overlay-screen {
@@ -53,24 +330,77 @@
   stroke: none;
 }
 
-.button-wrapper {
-  @include flexbox;
-
-  button {
-    margin-right: 10px;
-    width: 200px;
-    height: 70px;
-    background-color: rgb(137, 137, 137);
-    color: $white;
-    border-radius: 15px;
-    transition: backgroundColor 100ms ease-in-out;
-
-    &:last-child {
-      margin-right: 0;
+// 반응형 스타일
+@include responsive(T) {
+  .step-indicator {
+    .step {
+      width: 150px;
+      
+      .step-number {
+        width: 30px;
+        height: 30px;
+        font-size: $font-size-16;
+      }
+      
+      .step-label {
+        font-size: $font-size-14;
+      }
     }
+  }
+  
+  .title {
+    font-size: 28px;
+    margin-bottom: 25px;
+    
+    .subtitle {
+      font-size: $font-size-16;
+    }
+  }
+  
+  .image-picker {
+    padding: 50px 30px;
+    
+    p {
+      font-size: $font-size-20;
+    }
+    
+    .upload-area {
+      width: 250px;
+      height: 180px;
+    }
+    
+    button {
+      width: 100px;
+      height: 100px;
+    }
+    
+    .icon {
+      width: 50px;
+      height: 50px;
+    }
+  }
+}
 
-    &:hover {
-      background-color: rgb(92, 91, 91);
+@include responsive(D) {
+  .image-annotator {
+    padding: 40px;
+    max-width: 1000px;
+  }
+  
+  .image-picker {
+    max-width: 600px;
+    
+    .upload-area {
+      width: 300px;
+      height: 200px;
+    }
+  }
+  
+  .button-wrapper {
+    button {
+      width: 200px;
+      height: 55px;
+      font-size: $font-size-16;
     }
   }
 }

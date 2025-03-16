@@ -17,7 +17,6 @@ import {
 } from 'tldraw';
 import 'tldraw/tldraw.css';
 import styles from './canvas-editor.module.scss';
-import { FaArrowRight } from 'react-icons/fa6';
 
 import { TbPointer } from 'react-icons/tb';
 import {
@@ -135,7 +134,7 @@ const DoneButton = ({
           onClick(blob!);
         }}
       >
-        <FaArrowRight className={styles.icon} />
+        다음
       </button>
     </>
   );

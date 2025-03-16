@@ -2,6 +2,7 @@ import styles from './main.module.scss';
 import { Image as Iimage } from '@/model/Image';
 import { DiaryImage } from './Image';
 import dynamic from 'next/dynamic';
+import DiaryFooter from './DiaryFooter';
 
 const DiaryContent = dynamic(
   () => import('@/app/diary/[id]/_component/DiaryContent'),
@@ -22,6 +23,7 @@ const DiaryMain = ({ Image, title, content }: DiaryMainProps) => {
         <div className={styles.title}>{title}</div>
         <DiaryContent content={content} />
       </div>
+      <DiaryFooter />
     </div>
   );
 };

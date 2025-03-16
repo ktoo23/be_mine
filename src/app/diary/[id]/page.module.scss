@@ -8,18 +8,20 @@
 
 .diary-container {
   position: relative;
-  padding-bottom: 10px;
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
   overflow: hidden;
-
+  margin: 20px auto;
+  padding: 0;
+  
   @include responsive(T) {
-    margin: 0 auto;
-    width: 617px;
+    width: 680px;
   }
 
   @include responsive(D) {
-    margin-bottom: 100px;
-    width: 1000px;
-    padding-bottom: 0;
-    border: 1px solid $border;
+    width: 920px;
+    display: flex;
+    flex-direction: column;
   }
 }

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="160" viewBox="0 0 300 160">
+  <!-- 배경 없음 (투명) -->
+  
+  <!-- BE - 가운데 정렬, 더 연한 라벤더 색상 -->
+  <text x="150" y="70" font-family="Arial, sans-serif" font-size="60" font-weight="900" fill="#b68fc2" text-anchor="middle" stroke="#b68fc2" stroke-width="2">BE</text>
+  
+  <!-- MINE - 가운데 정렬, 더 연한 라벤더 색상 -->
+  <text x="150" y="130" font-family="Arial, sans-serif" font-size="60" font-weight="900" fill="#b68fc2" text-anchor="middle" stroke="#b68fc2" stroke-width="2">MINE</text>
+</svg>

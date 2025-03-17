@@ -49,7 +49,7 @@ export const SingleFoster = ({ id }: Props) => {
         />
         <AnimalDetails title="건강 정보" type="health" content={data.Health} />
         <AnimalDetails
-          title="저에 대한 정보에용"
+          title="저에 대한 정보에요"
           type="behavior"
           content={data.Behavior}
         />

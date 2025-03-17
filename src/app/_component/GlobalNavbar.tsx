@@ -34,10 +34,10 @@ export const GlobalNavbar = () => {
           <h1 className={styles.logo}>
             <Link href="/">
               <Image
-                src="https://nextjs.org/icons/next.svg"
-                alt="Next.js logo"
-                width={100}
-                height={30}
+                src="/logo.svg"
+                alt="be mine logo"
+                width={150}
+                height={150}
                 priority
               />
             </Link>

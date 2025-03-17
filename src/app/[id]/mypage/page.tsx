@@ -10,10 +10,20 @@ import { UserPosts } from './_component/UserPosts';
 
 import { getUserPosts } from '@/lib/user/getUserPosts';
 import { prefetchInfiniteData } from '@/utils/prefetchInifiniteData';
+import { getUser } from '@/lib/user/getUser';
 
 type Props = {
   params: { id: string };
 };
+
+export async function generateMetadata({ params }: Props) {
+  const { id } = params;
+  const user = await getUser({ queryKey: ['users', id] });
+  return {
+    title: `${user.name} - 내 프로필 / Be mine.`,
+    description: `${user.name} - 프로필 페이지`,
+  };
+}
 
 const Page = async ({ params }: Props) => {
   const session = await auth();

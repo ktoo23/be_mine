@@ -6,6 +6,12 @@ import { FosterTab } from './_component/FosterTab';
 import { FosterAnimals } from './_component/FosterAnimals';
 import { prefetchInfiniteData } from '@/utils/prefetchInifiniteData';
 import { getFosters } from '@/lib/getFosters';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: '임보 게시글 보기 / Be mine.',
+  description: '임보 게시글',
+};
 
 const FosterAnimalsPage = async () => {
   const selectedTab = 'dog';

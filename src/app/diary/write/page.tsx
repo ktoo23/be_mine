@@ -3,6 +3,13 @@ import pageTitleStyles from '@/app/_component/pageTitle.module.scss';
 import { PageTitle } from '@/app/_component/PageTitle';
 import ImageAnnotatorWrapper from './_component/ImageAnnotatorWrapper';
 
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: '임보 일기 작성하기 / Be mine.',
+  description: '임보 일기 작성',
+};
+
 const Page = () => {
   return (
     <>

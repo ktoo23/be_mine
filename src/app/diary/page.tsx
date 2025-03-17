@@ -12,6 +12,12 @@ import { PageTitle } from '../_component/PageTitle';
 import { DiaryTab } from './_component/DiaryTab';
 import { DiaryAnimals } from './_component/DiaryAnimals';
 import { PiPencil } from 'react-icons/pi';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: '임보 후기 보기 / Be mine.',
+  description: '임보 후기',
+};
 
 const DiaryAnimalsPage = async () => {
   const session = await auth();

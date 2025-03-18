@@ -1,7 +1,7 @@
 import { Animal } from './Animal';
 
 export interface FosterSummary {
-  id: string;
+  id: number;
   announcementNo: string;
   animal: Animal;
   imageUrl: string;

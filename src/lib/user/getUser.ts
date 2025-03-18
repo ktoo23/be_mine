@@ -12,7 +12,7 @@ export const getUser = async ({ queryKey }: { queryKey: [string, string] }) => {
   );
 
   if (!res.ok) {
-    throw new Error('Failed to fetch post data.');
+    throw new Error('Failed to fetch user data.');
   }
 
   return res.json();

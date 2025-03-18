@@ -69,6 +69,14 @@ $lg-height: 80px;
 
     select {
       cursor: pointer;
+      padding: 4px 2px;
+      border: 2px solid $lavender;
+      border-radius: 5px;
+
+      &:active,
+      &:focus {
+        border-color: $lavender-dark;
+      }
     }
   }
 
@@ -150,6 +158,12 @@ $lg-height: 80px;
     background-color: $lavender;
     font-weight: bold;
     border-radius: 41px;
+
+    &:hover,
+    &:active,
+    &:focus {
+      opacity: 0.7;
+    }
   }
 
   @include responsive(T) {

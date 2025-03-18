@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { MutableRefObject, useRef, useState } from 'react';
 
 import styles from './postForm.module.scss';
 import cn from 'classnames';
@@ -32,6 +32,7 @@ export const PostForm = ({ result }: PostFormProps) => {
   const [editorContent, setEditorContent] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   const [src, setSrc] = useState<string | null>(URL.createObjectURL(result));
+  const triggerRef = useRef<HTMLButtonElement>(null);
 
   const methods = useForm({
     defaultValues: { title: '', animalInfo: { id: -1, data: '' } },
@@ -129,6 +130,7 @@ export const PostForm = ({ result }: PostFormProps) => {
                 <p>{field.value?.data || '-'}</p>
               </div>
               <button
+                ref={triggerRef}
                 type="button"
                 className={styles['search-button']}
                 onClick={() => setIsOpen(true)}
@@ -145,6 +147,7 @@ export const PostForm = ({ result }: PostFormProps) => {
             animalField={field}
             isOpen={isOpen}
             setIsOpen={setIsOpen}
+            triggerRef={triggerRef}
           />
           <Input
             label="제목"

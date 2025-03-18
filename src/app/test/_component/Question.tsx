@@ -3,7 +3,7 @@
 import { useState } from 'react';
 
 import styles from './question.module.scss';
-import QUESTIONS from '@/data';
+import QUESTIONS from '@/test';
 import { Header } from './Header';
 import { Pagination } from './Pagination';
 import { Answers } from './Answers';

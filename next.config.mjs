@@ -21,6 +21,16 @@ const nextConfig = {
         hostname: 'loremflickr.com',
         port: '',
       },
+      {
+        protocol: 'https',
+        hostname: 'picsum.photos',
+        port: '',
+      },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+        port: '',
+      },
     ], // faker가 사용하는 도메인 추가
   },
 };

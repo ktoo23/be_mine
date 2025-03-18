@@ -1,11 +1,11 @@
 import { QueryClient, DehydratedState, dehydrate } from '@tanstack/react-query';
 
 type PrefetchSingleDataParams<TQueryFnData> = {
-  queryKey: [string, string];
+  queryKey: [string, 'dog' | 'cat', string];
   queryFn: ({
     queryKey,
   }: {
-    queryKey: [string, string];
+    queryKey: [string, 'dog' | 'cat', string];
   }) => Promise<TQueryFnData>;
 };
 

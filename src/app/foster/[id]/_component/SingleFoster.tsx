@@ -8,19 +8,21 @@ import styles from '../page.module.scss';
 import { useQuery } from '@tanstack/react-query';
 import { getSingleFoster } from '@/lib/getSingleFoster';
 import { Foster } from '@/model/Foster';
+import { useFosterTabStore } from '@/store/tab';
 
 type Props = {
   id: string;
 };
 
 export const SingleFoster = ({ id }: Props) => {
+  const { selectedTab } = useFosterTabStore();
   const { data, error } = useQuery<
     Foster,
     Object,
     Foster,
-    [_1: string, _2: string]
+    [_1: string, _2: 'dog' | 'cat', _3: string]
   >({
-    queryKey: ['fosters', id],
+    queryKey: ['fosters', selectedTab, id],
     queryFn: getSingleFoster,
     staleTime: 60 * 1000,
     gcTime: 300 * 1000,

@@ -7,19 +7,21 @@ import DiaryHeader from './DiaryHeader';
 import DiaryMain from './DiaryMain';
 import { getSingleDiary } from '@/lib/getSingleDiary';
 import { Diary } from '@/model/Diary';
+import { useDiaryTabStore } from '@/store/tab';
 
 type Props = {
   id: string;
 };
 
 export const SingleDiary = ({ id }: Props) => {
+  const { selectedTab } = useDiaryTabStore();
   const { data, error } = useQuery<
     Diary,
     Object,
     Diary,
-    [_1: string, _2: string]
+    [_1: string, _2: 'dog' | 'cat', _3: string]
   >({
-    queryKey: ['diaries', id],
+    queryKey: ['diaries', selectedTab, id],
     queryFn: getSingleDiary,
     staleTime: 60 * 1000,
     gcTime: 300 * 1000,

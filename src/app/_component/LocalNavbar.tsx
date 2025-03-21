@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 import cn from 'classnames';
-import styles from './localNavbar.module.scss';
+import styles from './lnb.module.scss';
 import { LuDog, LuUser } from 'react-icons/lu';
 import { LuPencil } from 'react-icons/lu';
 import { MdOutlineQuiz } from 'react-icons/md';

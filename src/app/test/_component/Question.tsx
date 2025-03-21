@@ -1,9 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-
 import styles from './question.module.scss';
-import QUESTIONS from '@/test';
+import QUESTIONS from '@/FosterTypeTest';
 import { Header } from './Header';
 import { Pagination } from './Pagination';
 import { Answers } from './Answers';

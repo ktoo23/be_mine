@@ -6,7 +6,7 @@ import { LuUser } from 'react-icons/lu';
 import { LuLogOut } from 'react-icons/lu';
 import cn from 'classnames';
 
-import styles from './globalNavbar.module.scss';
+import styles from './gnb.module.scss';
 import { usePathname } from 'next/navigation';
 import { signOut, useSession } from 'next-auth/react';
 import { DropdownMenu } from './DropdownMenu';
